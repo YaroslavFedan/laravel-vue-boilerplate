@@ -16,13 +16,14 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->group(function(){
 
-  Route::get('/user', function (Request $request) {
-      return $request->user();
-  });
+  // Route::get('/user', function (Request $request) {
+  //     return $request->user();
+  // });
 
   Route::namespace('Api')->group(function () {
 
-    Route::post('/logout', 'AuthController@logout');
+    Route::get('/user', "UserController@info");
+
 
     Route::get('/todos', 'TodosController@index');
     Route::post('/todos', 'TodosController@store');
@@ -30,6 +31,8 @@ Route::middleware('auth:api')->group(function(){
     Route::patch('/todosCheckAll', 'TodosController@updateAll');
     Route::delete('/todos/{todo}', 'TodosController@destroy');
     Route::delete('/todosDeleteCompleted', 'TodosController@destroyCompleted');
+
+    Route::post('/logout', 'AuthController@logout');
   });
 
 });

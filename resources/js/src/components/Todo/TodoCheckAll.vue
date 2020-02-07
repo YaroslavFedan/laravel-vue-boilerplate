@@ -23,12 +23,15 @@ export default {
   },
   methods: {
     allChecked(val) {
+      this.$emit("onLoading", true);
       this.$store
         .dispatch("todo/allChecked", val)
         .then(res => {
+          this.$emit("onLoading", false);
           this.$store.dispatch("updateNotice", this.updateSuccess);
         })
         .catch(error => {
+          this.$emit("onLoading", false);
           this.$store.dispatch("updateNotice", {
             show: true,
             color: "danger",

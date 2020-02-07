@@ -1,14 +1,14 @@
 export default {
-  clearTodos({ commit }) {
-    commit("RETRIEVE_TODOS", []);
-  },
   retrieveTodos(context) {
-    axios
-      .get("/todos")
-      .then(response => {
-        context.commit("RETRIEVE_TODOS", response.data);
-      })
-      .catch(error => console.log(error));
+    return new Promise((resolve, reject) => {
+      axios
+        .get("/todos")
+        .then(response => {
+          context.commit("RETRIEVE_TODOS", response.data);
+          resolve(response.data);
+        })
+        .catch(error => reject(error));
+    });
   },
   addTodo({ commit }, title) {
     return new Promise((resolve, reject) => {
@@ -41,7 +41,7 @@ export default {
         .delete(`/todos/${id}`)
         .then(response => {
           commit("DELETE_TODO", id);
-          resolve(id);
+          resolve(response.data);
         })
         .catch(error => reject(error));
     });

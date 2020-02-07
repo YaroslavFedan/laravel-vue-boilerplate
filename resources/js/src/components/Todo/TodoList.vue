@@ -3,8 +3,9 @@
     <v-flex xs12 sm8 md4>
       <v-card :loading="loading">
         <v-card-title primary-title>Task list</v-card-title>
+
         <v-card-text>
-          <todo-form></todo-form>
+          <todo-form @onLoading="onLoading"></todo-form>
           <v-list>
             <v-list-item-group>
               <transition-group
@@ -16,6 +17,7 @@
                   :key="todo.id"
                   :todo="todo"
                   :checkAll="!anyRemaining"
+                  @onLoading="onLoading"
                 ></todo-item>
               </transition-group>
             </v-list-item-group>
@@ -24,7 +26,7 @@
 
         <v-card-actions>
           <div class="extra-container mr-6 ml-6">
-            <todo-check-all></todo-check-all>
+            <todo-check-all @onLoading="onLoading"></todo-check-all>
             <todo-items-remaining></todo-items-remaining>
           </div>
         </v-card-actions>
@@ -34,7 +36,7 @@
             <todo-filtered></todo-filtered>
             <div>
               <transition name="fade">
-                <todo-delete-completed></todo-delete-completed>
+                <todo-delete-completed @onLoading="onLoading"></todo-delete-completed>
               </transition>
             </div>
           </div>
@@ -52,8 +54,11 @@ import TodoItemsRemaining from "./TodoItemsRemaining";
 import TodoFiltered from "./TodoFiltered";
 import TodoDeleteCompleted from "./TodoDeleteCompleted";
 
+import Loading from "../../mixins/Loading";
+
 export default {
   name: "todo-list",
+  mixins: [Loading],
   components: {
     TodoForm,
     TodoItem,
@@ -68,10 +73,22 @@ export default {
     },
     todosFiltered() {
       return this.$store.getters["todo/todosFiltered"];
+    },
+    disabled() {
+      return this.loading;
+    }
+  },
+  methods: {
+    onLoading(status) {
+      this.$store.dispatch("setLoading", status);
     }
   },
   created() {
-    this.$store.dispatch("todo/retrieveTodos");
+    this.onLoading(true);
+    this.$store
+      .dispatch("todo/retrieveTodos")
+      .then(res => this.onLoading(false))
+      .catch(error => this.onLoading(false));
   }
 };
 </script>

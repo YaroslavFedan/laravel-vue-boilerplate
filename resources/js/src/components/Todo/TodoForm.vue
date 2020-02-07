@@ -41,13 +41,19 @@ export default {
   methods: {
     onAddTodo() {
       if (this.$refs.input.validate()) {
+        this.$emit("onLoading", true);
+
         this.$store
           .dispatch("todo/addTodo", this.newTodo)
           .then(response => {
+            this.$emit("onLoading", false);
             this.clearErrors();
             this.$store.dispatch("updateNotice", this.messageSuccess);
           })
-          .catch(error => (this.serverErrors = error.response.data.errors));
+          .catch(error => {
+            this.$emit("onLoading", false);
+            this.serverErrors = error.response.data.errors;
+          });
       }
     },
     clearErrors() {

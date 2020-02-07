@@ -1,55 +1,118 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import store from "../store";
-import Login from '../pages/auth/Login.vue';
-import Register from '../pages/auth/Register.vue';
+// import Login from '../pages/auth/Login.vue';
+// import Register from '../pages/auth/Register.vue';
 
 Vue.use(VueRouter);
 
 function lazyLoad(page) {
-  return () => import(`../pages/${page}.vue`);
+  return () => import(`../views/${page}.vue`);
 }
 
 const routes = [
-  {
-    path: "/",
-    name: "home",
-    component: lazyLoad("Home")
-  },
-  {
-    path: "/todo",
-    name: "todo",
-    component: lazyLoad("Todo"),
-    meta: {
-      requiresAuth: true
-    }
-  },
+
+  // {
+  //   path: "/todo",
+  //   name: "todo",
+  //   component: lazyLoad("Todo"),
+  //   meta: {
+  //     requiresAuth: true
+  //   }
+  // },
+
   {
     path: "/login",
     name: "login",
-    component: Login,//lazyLoad("auth/Login"),
-    props: {userId:'test'},
+    component: lazyLoad("auth/Login"),
     meta: {
+      layout:'auth',
       requiresVisitor: true
     }
   },
   {
     path: "/register",
     name: "register",
-    component: Register,//lazyLoad("auth/Register"),
+    component: lazyLoad("auth/Register"),
     meta: {
+      layout:'auth',
       requiresVisitor: true
     }
   },
   {
-    path: "/logout",
-    name: "logout",
-    component: lazyLoad("auth/Logout")
+    path: "/",
+    name: "home",
+    component: lazyLoad("main/Home"),
+    meta: {
+      layout:'main',
+      pageTitle:"Home",
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/categories",
+    name: "categories",
+    component: lazyLoad("main/Categories"),
+    meta: {
+      layout:'main',
+      pageTitle:"Categories",
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/history",
+    name: "history",
+    component: lazyLoad("main/History"),
+    meta: {
+      layout:'main',
+      pageTitle:"History",
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/planning",
+    name: "planning",
+    component: lazyLoad("main/Planning"),
+    meta: {
+      layout:'main',
+      pageTitle:"Planning",
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/record",
+    name: "record",
+    component: lazyLoad("main/Record"),
+    meta: {
+      layout:'main',
+      pageTitle:"Record",
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/task",
+    name: "task",
+    component: lazyLoad("main/Task"),
+    meta: {
+      layout:'main',
+      pageTitle:"Task",
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/profile",
+    name: "profile",
+    component: lazyLoad("main/Profile"),
+    meta: {
+      layout:'main',
+      pageTitle:"Profile",
+      requiresAuth: true
+    }
   },
   {
     path: "*",
     name: 404,
-    component: lazyLoad("Error404")
+    component: lazyLoad("Error")
   }
 ];
 
@@ -71,7 +134,7 @@ router.beforeEach((to, from, next) => {
     }
   } else if (to.matched.some(record => record.meta.requiresVisitor)) {
     // этот путь закрыт если пользователь уже авторизирован
-    if (store.getters.loggedIn) {
+    if (store.getters["auth/loggedIn"]) {
       next({
         name: "home"
       });

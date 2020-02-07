@@ -28,20 +28,23 @@ window.Vue = require('vue');
 
 
 
-import MainLayout from './src/components/Layouts/MainLayout'
+import App from './App.vue';
 import store from './src/store';
 import router from "./src/router";
-import vuetify from './src/plugins/vuetify'
+import vuetify from './src/plugins/vuetify.plugin';
+import './src/plugins/toast.plugin';
+import dateFilter from './src/filters/date.filter.js';
+
 
 window.eventBus = new Vue();
 Vue.config.productionTip = false;
 
-
+Vue.filter('date',dateFilter);
 
 new Vue({
     router,
     store,
     vuetify,
-    render: h => h(MainLayout)
+    render: h => h(App)
   }).$mount("#app");
 

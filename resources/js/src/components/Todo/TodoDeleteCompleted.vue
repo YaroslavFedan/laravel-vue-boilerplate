@@ -27,12 +27,15 @@ export default {
   },
   methods: {
     deleteCompleted() {
+      this.$emit("onLoading", true);
       this.$store
         .dispatch("todo/deleteCompleted")
         .then(res => {
+          this.$emit("onLoading", false);
           this.$store.dispatch("updateNotice", this.deleteCompletedSuccess);
         })
         .catch(error => {
+          this.$emit("onLoading", false);
           this.$store.dispatch("updateNotice", {
             show: true,
             color: "danger",

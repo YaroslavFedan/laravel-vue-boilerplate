@@ -2,8 +2,8 @@ import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
 import VueCookies from "vue-cookies";
-import TodoModule from "./modules/todo";
-import AuthModule from "./modules/auth";
+import todo from "./modules/todo";
+import auth from "./modules/auth";
 
 Vue.use(Vuex);
 Vue.use(VueCookies);
@@ -28,42 +28,55 @@ axios.interceptors.request.use(
 );
 
 const store = new Vuex.Store({
+  strict:true,
   modules: {
-    todo: TodoModule,
-    auth: AuthModule
+    auth,
+    todo,
   },
   state: {
     loading: false,
-    notice: {
-      timeout: 2000,
-      show: false,
-      text: "",
-      color: "success",
-      multiLine: true
-    }
+    message:{
+      title: null,
+      message: null,
+      type: 'success',
+    },
   },
   getters: {
-    notice: state => state.notice,
+    message: state => state.message,
     loading: state => state.loading
   },
   mutations: {
-    UPDATE_NOTICE_MESSAGE: (state, data) => {
-      state.notice.timeout = data.timeout || state.notice.timeout;
-      state.notice.show = data.show || state.notice.show;
-      state.notice.text = data.text || state.notice.text;
-      state.notice.color = data.color || state.notice.color;
-      state.notice.multiLine = data.multiLine || state.notice.multiLine;
+    UPDATE_MESSAGE: (state, data) => {
+      state.message = {
+        ...state.message,
+        ...data
+      };
     },
     SET_LOADING: (state, status) => {
       state.loading = status;
     }
   },
   actions: {
-    updateNotice({ commit }, data) {
-      commit("UPDATE_NOTICE_MESSAGE", data);
+    init(context, data = null){
+        console.log('init')
+    },
+    setMessage({commit}, data) {
+      const colors ={
+        success : "#4caf50",
+        info : "#2196f3",
+        warning:"#FFC107",
+        error: "#F44336"
+      }
+      data.color = colors[data.type];
+      commit("UPDATE_MESSAGE", data);
     },
     setLoading({ commit }, status) {
       commit("SET_LOADING", status);
+    },
+    clearData(context){
+      // очищение всех данных после выхода из системы
+      context.commit('todo/RETRIEVE_TODOS');
+      // context.commit('auth/CLEAR_USER');
     }
   }
 });

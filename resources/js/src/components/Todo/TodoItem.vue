@@ -94,6 +94,7 @@ export default {
         });
     },
     doneEdit() {
+      this.$emit("onLoading", true);
       this.$store
         .dispatch("todo/updateTodo", {
           id: this.id,
@@ -102,10 +103,14 @@ export default {
           editing: this.editing
         })
         .then(res => {
+          this.$emit("onLoading", false);
           this.editing = false;
           this.$store.dispatch("updateNotice", this.message.updateSuccess);
         })
-        .catch(error => (this.serverErrors = error.response.data.errors));
+        .catch(error => {
+          this.$emit("onLoading", false);
+          this.serverErrors = error.response.data.errors;
+        });
     },
     editTodo() {
       this.beforeEditCache = this.title;

@@ -25,7 +25,7 @@ class User extends Authenticatable
    * @var array
    */
   protected $hidden = [
-    'password', 'remember_token',
+    'password', 'remember_token', 'email_verified_at'
   ];
 
   /**
@@ -41,4 +41,13 @@ class User extends Authenticatable
   {
     return $this->hasMany('App\Todo');
   }
+
+  public function security()
+  {
+    return $this->hasOne('App\PasswordSecurity')->select(['user_id','google2fa_enable']);
+  }
+
+
+
+
 }

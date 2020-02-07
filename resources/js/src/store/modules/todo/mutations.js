@@ -1,5 +1,5 @@
 export default {
-  RETRIEVE_TODOS: (state, todos) => {
+  RETRIEVE_TODOS: (state, todos = []) => {
     state.todos = todos;
   },
   ADD_TODO: (state, todo) => {

@@ -16,6 +16,23 @@ export default {
     },
   },
   actions:{
+    // fetchUser(){
+    //   console.log('this fetch');
+    //   return new Promise((resolve, reject) => {
+    //     axios
+    //       .get("/user")
+    //       .then(response => {
+    //         commit("SET_USER", response.data);
+    //         resolve(response.data);
+    //       })
+    //       .catch(error => {
+    //         console.log(error);
+    //         // Vue.$cookies.remove("access_token");
+    //         // context.commit("RETRIEVE_TOKEN", null);
+    //         reject(error);
+    //       });
+    //   });
+    // },
     register({commit}, data){
       return new Promise((resolve, reject) => {
         axios
@@ -24,7 +41,7 @@ export default {
           .catch(error => reject(error) )
       });
     },
-    login({commit}, data) {
+    login({commit, dispatch}, data) {
 
       return new Promise((resolve, reject) => {
         axios
@@ -33,12 +50,15 @@ export default {
             const access_token = response.data.access_token;
             Vue.$cookies.set("access_token", access_token);
             commit("RETRIEVE_TOKEN", access_token);
+
             resolve(response);
           })
           .catch(error => reject(error))
       });
     },
     logout(context){
+
+      context.dispatch("clearData", null, {root:true})
 
       if(context.getters.loggedIn)
       {
