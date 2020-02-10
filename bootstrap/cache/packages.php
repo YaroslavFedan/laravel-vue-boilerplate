@@ -59,4 +59,15 @@
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     ),
   ),
+  'pragmarx/google2fa-laravel' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'PragmaRX\\Google2FALaravel\\ServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Google2FA' => 'PragmaRX\\Google2FALaravel\\Facade',
+    ),
+  ),
 );

@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["routes0"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[13],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/Error.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************!*\

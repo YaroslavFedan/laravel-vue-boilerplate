@@ -8,8 +8,8 @@
 
 
 <script>
-import AuthLayout from "./src/layouts/AuthLayout.vue";
-import MainLayout from "./src/layouts/MainLayout.vue";
+import AuthLayout from "./src/layouts/AuthLayout";
+import MainLayout from "./src/layouts/MainLayout";
 
 export default {
   name: "app",

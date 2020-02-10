@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["routes7"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[18],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/main/Profile.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************!*\
@@ -15,7 +15,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'profile'
+  name: "profile-page"
 });
 
 /***/ }),
@@ -35,7 +35,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("h1", [_vm._v("Profile")])
+  return _c("router-view")
 }
 var staticRenderFns = []
 render._withStripped = true

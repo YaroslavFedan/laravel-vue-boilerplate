@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import CheckErrors from "../../mixins/CheckErrors";
+import CheckErrors from "../../mixins/check-errors.mixin";
 
 export default {
   name: "todo-item",

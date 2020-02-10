@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["routes9"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[20],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/main/Task.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************!*\
@@ -9,6 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //

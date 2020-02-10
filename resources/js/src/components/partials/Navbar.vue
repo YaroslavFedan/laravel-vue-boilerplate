@@ -1,11 +1,10 @@
 <template>
-  <v-app-bar class="primary" :prominent.sync="prominent" dark app>
+  <v-app-bar class="primary" :prominent.sync="mobile" dark app>
     <v-app-bar-nav-icon @click.stop="toggle"></v-app-bar-nav-icon>
-    <v-toolbar-title>{{pageTitle}}</v-toolbar-title>
+    <v-toolbar-title v-if="!desktop" >{{pageTitle}}</v-toolbar-title>
 
-    <v-spacer></v-spacer>
 
-    <div class="menu__picker">
+    <div class="datetime" :class="{'mini':!desktop}">
       <v-menu>
         <template v-slot:activator="{ on }">
           <v-btn icon v-on="on">{{date | date('datetime')}}</v-btn>
@@ -35,8 +34,10 @@
 </template>
 
 <script>
+import desktop from '@/mixins/desktop.mixin';
 export default {
   name: "navbar",
+  mixins: [desktop],
   data: () => ({
     date: new Date(),
     interval: null,
@@ -50,8 +51,8 @@ export default {
     pageTitle() {
       return this.$route.meta.pageTitle || null;
     },
-    prominent() {
-      return this.$vuetify.breakpoint.mdAndDown;
+    mobile(){
+      return !this.desktop;
     }
   },
   methods: {
@@ -59,7 +60,6 @@ export default {
       eventBus.$emit("toggleNavbar");
     },
     logout() {
-
       this.$store.dispatch("auth/logout").then(response => this.$router.push({ name: "login" }));
     }
   },
@@ -75,14 +75,14 @@ export default {
 </script>
 
 <style lang="scss">
+
 header {
   left: 0px !important;
 }
-.menu {
-  &__picker {
-    top: 70px !important;
-    left: 50% !important;
-    margin-left: -130px;
+.datetime {
+  margin-left: 60px;
+  &.mini{
+    margin: 0 auto;
   }
 }
 </style>

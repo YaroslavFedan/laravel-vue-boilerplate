@@ -22,8 +22,14 @@ Route::middleware('auth:api')->group(function(){
 
   Route::namespace('Api')->group(function () {
 
-    Route::get('/user', "UserController@info");
 
+    Route::get('security', "SecurityController@index");
+    Route::post('security', "SecurityController@verify");
+    Route::patch('security', "SecurityController@toggle");
+
+
+
+    Route::get('/user', "UserController@info");
 
     Route::get('/todos', 'TodosController@index');
     Route::post('/todos', 'TodosController@store');

@@ -5,7 +5,7 @@ import 'cxlt-vue2-toastr/dist/css/cxlt-vue2-toastr.css';
 
 const opt = {
   position: 'top right',
-  showDuration: 2000,
+  showDuration: 1000,
   timeOut: 5000,
   progressBar: true,
   showMethod:"bounceInDown",

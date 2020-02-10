@@ -21,25 +21,24 @@ axios.interceptors.request.use(
     }
     return config;
   },
-
   error => {
     return Promise.reject(error);
   }
 );
 
 const store = new Vuex.Store({
-  strict:true,
+  strict: true,
   modules: {
     auth,
-    todo,
+    todo
   },
   state: {
     loading: false,
-    message:{
+    message: {
       title: null,
       message: null,
-      type: 'success',
-    },
+      type: "success"
+    }
   },
   getters: {
     message: state => state.message,
@@ -57,26 +56,23 @@ const store = new Vuex.Store({
     }
   },
   actions: {
-    init(context, data = null){
-        console.log('init')
-    },
-    setMessage({commit}, data) {
-      const colors ={
-        success : "#4caf50",
-        info : "#2196f3",
-        warning:"#FFC107",
+    setMessage({ commit }, data) {
+      const colors = {
+        success: "#4caf50",
+        info: "#2196f3",
+        warning: "#FFC107",
         error: "#F44336"
-      }
+      };
       data.color = colors[data.type];
       commit("UPDATE_MESSAGE", data);
     },
     setLoading({ commit }, status) {
       commit("SET_LOADING", status);
     },
-    clearData(context){
+    clearData(context) {
       // очищение всех данных после выхода из системы
-      context.commit('todo/RETRIEVE_TODOS');
-      // context.commit('auth/CLEAR_USER');
+      context.commit("auth/REMOVE_SECURITY_DATA");
+      context.commit("todo/RETRIEVE_TODOS");
     }
   }
 });

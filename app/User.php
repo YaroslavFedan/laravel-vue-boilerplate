@@ -42,9 +42,9 @@ class User extends Authenticatable
     return $this->hasMany('App\Todo');
   }
 
-  public function security()
+  public function passwordSecurity()
   {
-    return $this->hasOne('App\PasswordSecurity')->select(['user_id','google2fa_enable']);
+    return $this->hasOne('App\PasswordSecurity');
   }
 
 

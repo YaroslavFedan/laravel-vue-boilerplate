@@ -25,29 +25,30 @@
           :type="show_password ? 'text' : 'password'"
           @click:append="show_password = !show_password"
           :append-icon="show_password ? 'mdi-eye' : 'mdi-eye-off'"
+          autocomplete="on"
           required
         ></v-text-field>
         <v-alert dense outlined type="error" v-if="serverError">{{serverError}}</v-alert>
+
+        <v-card-actions justify-center>
+          <v-spacer></v-spacer>
+          <v-btn type="submit" block color="primary" :loading="loading" >Login</v-btn>
+        </v-card-actions>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <div class="pt-2 pb-2 mr-1">
+            No account?
+            <router-link :to="{name:'register'}">Sign up</router-link>
+          </div>
+          <v-spacer></v-spacer>
+        </v-card-actions>
       </v-form>
     </v-card-text>
-
-    <v-card-actions justify-center>
-      <v-spacer></v-spacer>
-      <v-btn type="submit" block color="primary" :loading="loading" form="login-form">Login</v-btn>
-    </v-card-actions>
-    <v-card-actions>
-      <v-spacer></v-spacer>
-      <div class="pt-2 pb-2 mr-1">
-        No account?
-        <router-link :to="{name:'register'}">Sign up</router-link>
-      </div>
-      <v-spacer></v-spacer>
-    </v-card-actions>
   </v-card>
 </template>
 
 <script>
-import Loading from "../../mixins/loading.mixin";
+import Loading from "@/mixins/loading.mixin";
 
 export default {
   name: "login-form",
@@ -67,45 +68,36 @@ export default {
       serverError: ""
     };
   },
+  computed: {
+    securityIsEnabled() {
+      return this.$store.getters["auth/securityIsEnabled"];
+    }
+  },
   methods: {
     async submitHandler() {
       if (this.$refs.form.validate()) {
-
         this.$store.dispatch("setLoading", true);
+
         try {
+          // авторизируемся
           await this.$store.dispatch("auth/login", this.form);
+          //проверяем включена ли Google Two Factor Authentication
+          await this.$store.dispatch("auth/security");
+
+          this.$store.dispatch("setLoading", false);
+
+          if (!this.securityIsEnabled) {
+            // сохраняем токен авторизации
+            this.$store.dispatch("auth/authorize");
+            this.$router.push({ name: "home" });
+          } else {
+             //проходим валидацию Google Two Factor Authentication
+            this.$router.push({ name: "security" });
+          }
         } catch (error) {
           this.$store.dispatch("setLoading", false);
           this.serverError = error.response.data;
         }
-
-        this.$router.push({ name: "home" });
-        // try{
-        //    console.log('fetching start');
-        //   const user = await this.$store.dispatch("auth/fetchUser");
-        //   console.log('user', user);
-        //   console.log('fetchUser success');
-        // }catch( error ){
-        //     console.log(error)
-        // }
-        //
-
-
-
-
-
-
-        // this.$store
-        //   .dispatch("auth/login", this.form)
-        //   .then(response => {
-        //     this.$store.dispatch("setLoading", false);
-
-        //     this.$router.push({ name: "home" });
-        //   })
-        //   .catch(error => {
-        //     this.$store.dispatch("setLoading", false);
-        //     this.serverError = error.response.data;
-        //   });
       }
     }
   }

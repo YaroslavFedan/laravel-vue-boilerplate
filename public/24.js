@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[5],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[24],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/components/g2fa/ValidationSecurityForm.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************************************!*\
@@ -9,19 +9,9 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _assets_image_google_icon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/assets/image/google-icon */ "./resources/js/src/assets/image/google-icon.js");
 /* harmony import */ var vue_the_mask__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-the-mask */ "./node_modules/vue-the-mask/dist/vue-the-mask.js");
 /* harmony import */ var vue_the_mask__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_the_mask__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _assets_image_google_icon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/assets/image/google-icon */ "./resources/js/src/assets/image/google-icon.js");
-/* harmony import */ var _mixins_check_errors_mixin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/mixins/check-errors.mixin */ "./resources/js/src/mixins/check-errors.mixin.js");
-/* harmony import */ var _mixins_loading_mixin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/mixins/loading.mixin */ "./resources/js/src/mixins/loading.mixin.js");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 //
 //
 //
@@ -52,13 +42,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-
-
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -66,51 +49,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   directives: {
     mask: vue_the_mask__WEBPACK_IMPORTED_MODULE_1__["mask"]
   },
-  mixins: [_mixins_check_errors_mixin__WEBPACK_IMPORTED_MODULE_3__["default"], _mixins_loading_mixin__WEBPACK_IMPORTED_MODULE_4__["default"]],
   data: function data() {
     return {
       mask: "######",
-      code: null,
-      icon: _assets_image_google_icon__WEBPACK_IMPORTED_MODULE_2__["default"].icon,
-      codeRules: [function (v) {
-        return !!v || "Code is required";
-      }, function (v) {
-        if (v !== null && v.length !== 6) {
-          return "Сode length should be 6 characters";
-        }
-
-        return true;
-      }]
+      icon: _assets_image_google_icon__WEBPACK_IMPORTED_MODULE_0__["default"].icon
     };
   },
-  methods: {
-    submitHandler: function () {
-      var _submitHandler = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                if (this.$refs.form.validate()) {
-                  this.$store.dispatch("setLoading", true);
-                }
-
-              case 1:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function submitHandler() {
-        return _submitHandler.apply(this, arguments);
-      }
-
-      return submitHandler;
-    }()
-  }
+  computed: {},
+  methods: {}
 });
 
 /***/ }),
@@ -181,7 +127,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-card",
-    { staticClass: "elevation-12 pl-5 pr-5", attrs: { loading: _vm.loading } },
+    { staticClass: "elevation-12 pl-5 pr-5" },
     [
       _c("v-card-title", { attrs: { "primary-title": "" } }, [
         _vm._v("Home accounting")
@@ -203,16 +149,7 @@ var render = function() {
         [
           _c(
             "v-form",
-            {
-              ref: "form",
-              attrs: { "lazy-validation": "" },
-              on: {
-                submit: function($event) {
-                  $event.preventDefault()
-                  return _vm.submitHandler($event)
-                }
-              }
-            },
+            { attrs: { id: "security-form", "lazy-validation": "" } },
             [
               _c("v-text-field", {
                 directives: [
@@ -223,23 +160,12 @@ var render = function() {
                     expression: "mask"
                   }
                 ],
-                ref: "input",
                 attrs: {
                   id: "code",
                   label:
                     "Enter the 6-digit code in your Google Authenticator app",
                   name: "code",
-                  rules: _vm.codeRules,
-                  "error-messages": _vm.checkError("code"),
-                  type: "text",
-                  required: ""
-                },
-                model: {
-                  value: _vm.code,
-                  callback: function($$v) {
-                    _vm.code = $$v
-                  },
-                  expression: "code"
+                  type: "text"
                 }
               }),
               _vm._v(" "),
@@ -255,8 +181,8 @@ var render = function() {
                       attrs: {
                         type: "submit",
                         block: "",
-                        loading: _vm.loading,
-                        color: "primary"
+                        color: "primary",
+                        form: "security-form"
                       }
                     },
                     [_vm._v("Send")]
@@ -365,52 +291,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ValidationSecurityForm_vue_vue_type_template_id_5939b4f6_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
-
-/***/ }),
-
-/***/ "./resources/js/src/mixins/check-errors.mixin.js":
-/*!*******************************************************!*\
-  !*** ./resources/js/src/mixins/check-errors.mixin.js ***!
-  \*******************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      serverErrors: {}
-    };
-  },
-  methods: {
-    checkError: function checkError(field) {
-      return this.serverErrors.hasOwnProperty(field) ? this.serverErrors[field] : [];
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./resources/js/src/mixins/loading.mixin.js":
-/*!**************************************************!*\
-  !*** ./resources/js/src/mixins/loading.mixin.js ***!
-  \**************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ({
-  computed: {
-    loading: function loading() {
-      return this.$store.getters["loading"];
-    },
-    disabled: function disabled() {
-      return this.loading;
-    }
-  }
-});
 
 /***/ })
 

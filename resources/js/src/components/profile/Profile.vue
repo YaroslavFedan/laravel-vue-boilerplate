@@ -1,11 +1,10 @@
 
 <template>
-  <router-view></router-view>
+  <h1>Profile Form</h1>
 </template>
 
 <script>
 export default {
-  name: "profile-page",
-};
+  name: 'profile-form'
+}
 </script>
-

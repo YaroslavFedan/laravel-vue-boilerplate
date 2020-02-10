@@ -30,10 +30,6 @@ class TodosController extends Controller
   public function store(StoreTodoPost $request)
   {
 
-    $request->validate([
-      'title'=>'required|max:255'
-    ]);
-
     $todo = Todo::create([
       'user_id' => Auth::user()->id,
       'title' => $request->title,
@@ -54,12 +50,8 @@ class TodosController extends Controller
   {
 
     if (Auth::user()->id !== $todo->user_id) {
-      return response()->json('Unauthorized', 401);
+      return response()->json('Unauthorized.', 401);
     }
-
-    $request->validate([
-      'title'=>'required|max:255'
-    ]);
 
     $todo->update($request->all());
 
@@ -94,7 +86,7 @@ class TodosController extends Controller
   {
 
     if (Auth::user()->id !== $todo->user_id) {
-      return response()->json('Unauthorized', 401);
+      return response()->json('Unauthorized.', 401);
     }
 
     $todo->delete();

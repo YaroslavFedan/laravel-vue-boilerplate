@@ -54,7 +54,7 @@ import TodoItemsRemaining from "./TodoItemsRemaining";
 import TodoFiltered from "./TodoFiltered";
 import TodoDeleteCompleted from "./TodoDeleteCompleted";
 
-import Loading from "../../mixins/Loading";
+import Loading from "../../mixins/loading.mixin";
 
 export default {
   name: "todo-list",
