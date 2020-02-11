@@ -58,10 +58,10 @@ export default {
         this.$store.dispatch("setLoading", true);
         try {
           await this.$store.dispatch("auth/security");
+          this.$store.dispatch("setLoading", false);
         } catch (e) {
           this.$store.dispatch("setMessage", this.messageError);
         }
-        this.$store.dispatch("setLoading", false);
       }
     }
   },

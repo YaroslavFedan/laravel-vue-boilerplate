@@ -2,15 +2,15 @@ import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
 import VueCookies from "vue-cookies";
-import todo from "./modules/todo";
-import auth from "./modules/auth";
+
+import auth from "./auth";
+
 
 Vue.use(Vuex);
 Vue.use(VueCookies);
-
 Vue.$cookies.config("1d");
 
-axios.defaults.baseURL = "http://laravel-vue.test/api";
+axios.defaults.baseURL = document.head.querySelector('meta[name="api-base-url"]').content;
 axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 axios.interceptors.request.use(
   config => {
@@ -29,8 +29,7 @@ axios.interceptors.request.use(
 const store = new Vuex.Store({
   strict: true,
   modules: {
-    auth,
-    todo
+    auth
   },
   state: {
     loading: false,
@@ -72,7 +71,6 @@ const store = new Vuex.Store({
     clearData(context) {
       // очищение всех данных после выхода из системы
       context.commit("auth/REMOVE_SECURITY_DATA");
-      context.commit("todo/RETRIEVE_TODOS");
     }
   }
 });

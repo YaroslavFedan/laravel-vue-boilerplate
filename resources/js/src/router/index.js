@@ -2,6 +2,11 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import store from "../store";
 
+import auth from "./middleware/auth";
+import authLocked from "./middleware/authLocked";
+import securityVerify from "./middleware/securityVerify";
+import middlewarePipeline from "./middleware/middlewarePipeline";
+
 Vue.use(VueRouter);
 
 function lazyLoad(page) {
@@ -16,7 +21,7 @@ const routes = [
     component: lazyLoad("components/auth/RegisterForm"),
     meta: {
       layout: "auth",
-      requiresVisitor: true
+      middleware: [authLocked]
     }
   },
   {
@@ -25,7 +30,7 @@ const routes = [
     component: lazyLoad("components/auth/LoginForm"),
     meta: {
       layout: "auth",
-      requiresVisitor: true
+      middleware: [authLocked]
     }
   },
   {
@@ -34,7 +39,7 @@ const routes = [
     component: lazyLoad("components/g2fa/VerifySecurityForm"),
     meta: {
       layout: "auth",
-      securityIsEnabled: true
+      middleware: [securityVerify]
     }
   },
   {
@@ -44,57 +49,7 @@ const routes = [
     meta: {
       layout: "main",
       pageTitle: "Home",
-      requiresAuth: true
-    }
-  },
-  {
-    path: "/categories",
-    name: "categories",
-    component: lazyLoad("views/main/Categories"),
-    meta: {
-      layout: "main",
-      pageTitle: "Categories",
-      requiresAuth: true
-    }
-  },
-  {
-    path: "/history",
-    name: "history",
-    component: lazyLoad("views/main/History"),
-    meta: {
-      layout: "main",
-      pageTitle: "History",
-      requiresAuth: true
-    }
-  },
-  {
-    path: "/planning",
-    name: "planning",
-    component: lazyLoad("views/main/Planning"),
-    meta: {
-      layout: "main",
-      pageTitle: "Planning",
-      requiresAuth: true
-    }
-  },
-  {
-    path: "/record",
-    name: "record",
-    component: lazyLoad("views/main/Record"),
-    meta: {
-      layout: "main",
-      pageTitle: "Record",
-      requiresAuth: true
-    }
-  },
-  {
-    path: "/task",
-    name: "task",
-    component: lazyLoad("views/main/Task"),
-    meta: {
-      layout: "main",
-      pageTitle: "Task",
-      requiresAuth: true
+      middleware: [auth]
     }
   },
   {
@@ -102,18 +57,9 @@ const routes = [
     component: lazyLoad("views/main/Profile"),
     meta: {
       layout: "main",
-      requiresAuth: true
+      middleware: [auth]
     },
     children: [
-      {
-        path: "/",
-        name: "profile",
-        component: lazyLoad("components/profile/Profile"),
-        meta: {
-          layout: "main",
-          pageTitle: "Profile"
-        }
-      },
       {
         path: "security",
         name: "profile-security",
@@ -138,38 +84,20 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.securityIsEnabled)) {
-    // этот путь требует пройти Google Two Factor Authentication
-    // если нет временного токена, перенаправляем на страницу логина
-    if (!store.getters["auth/securityIsEnabled"]) {
-      next({
-        name: "login"
-      });
-    } else {
-      next();
-    }
-  } else if (to.matched.some(record => record.meta.requiresAuth)) {
-    // этот путь требует авторизации, проверяем залогинен ли
-    // пользователь, и если нет, перенаправляем на страницу логина
-    if (!store.getters["auth/loggedIn"]) {
-      next({
-        name: "login"
-      });
-    } else {
-      next();
-    }
-  } else if (to.matched.some(record => record.meta.requiresVisitor)) {
-    // этот путь закрыт если пользователь уже авторизирован
-    if (store.getters["auth/loggedIn"]) {
-      next({
-        name: "home"
-      });
-    } else {
-      next();
-    }
-  } else {
-    next(); // всегда так или иначе нужно вызвать next()!
+  if (!to.meta.middleware) {
+    return next();
   }
+  const middleware = to.meta.middleware;
+  const context = {
+    to,
+    from,
+    next,
+    store
+  };
+  return middleware[0]({
+    ...context,
+    next: middlewarePipeline(context, middleware, 1)
+  });
 });
 
 export default router;

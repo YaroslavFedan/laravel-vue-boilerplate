@@ -100,6 +100,11 @@ export default {
         }
       }
     }
-  }
+  },
 };
 </script>
+<style lang="scss">
+.cxlt-toastr-container {
+  margin-top: 0 !important;
+}
+</style>

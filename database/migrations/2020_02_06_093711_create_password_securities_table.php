@@ -15,10 +15,12 @@ class CreatePasswordSecuritiesTable extends Migration
   {
     Schema::create('password_securities', function (Blueprint $table) {
       $table->bigIncrements('id');
-      $table->integer('user_id');
+      $table->bigInteger('user_id')->unsigned();
       $table->boolean('google2fa_enable')->default(false);
       $table->string('google2fa_secret')->nullable();
       $table->timestamps();
+
+      $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
     });
   }
 
