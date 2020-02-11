@@ -1,14 +1,14 @@
 export default {
-  data: function () {
+  data: function() {
     return {
       serverErrors: {}
-    }
+    };
   },
-  methods :{
+  methods: {
     checkError(field) {
       return this.serverErrors.hasOwnProperty(field)
         ? this.serverErrors[field]
         : [];
     }
   }
-}
+};

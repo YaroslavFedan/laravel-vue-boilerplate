@@ -27,7 +27,6 @@ class AuthController extends Controller
       ]);
 
       return $response->getBody();
-
     } catch (\GuzzleHttp\Exception\BadResponseException $e) {
 
       if ($e->getCode() === 400) {
@@ -53,7 +52,7 @@ class AuthController extends Controller
     $user->password =  Hash::make($request->password);
     $user->save();
 
-   return response()->json('Registration completed successfully', 200);
+    return response()->json('Registration completed successfully', 200);
   }
 
 

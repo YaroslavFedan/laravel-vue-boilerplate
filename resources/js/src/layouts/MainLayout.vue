@@ -97,7 +97,7 @@ export default {
 };
 </script>
 <style lang="scss">
-.cxlt-toastr-container{
+.cxlt-toastr-container {
   margin-top: 70px;
 }
 </style>

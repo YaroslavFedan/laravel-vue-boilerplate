@@ -3,8 +3,8 @@ export default {
     loading() {
       return this.$store.getters["loading"];
     },
-    disabled(){
+    disabled() {
       return this.loading;
     }
-  },
-}
+  }
+};

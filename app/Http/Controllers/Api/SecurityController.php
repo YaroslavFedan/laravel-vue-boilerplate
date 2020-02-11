@@ -51,7 +51,7 @@ class SecurityController extends Controller
       return response()->json($this->_getData($user), 200);
     }
 
-    return response()->json($this->_getCodeError($user), 404);
+    return response()->json($this->_getCodeError($user), 400);
   }
 
   /**
@@ -71,7 +71,7 @@ class SecurityController extends Controller
       return response()->json($this->_getData($user), 200);
     }
 
-    return response()->json($this->_getCodeError($user), 404);
+    return response()->json($this->_getCodeError($user), 400);
   }
 
 

@@ -3,5 +3,5 @@ export default {
     desktop() {
       return !this.$vuetify.breakpoint.mdAndDown;
     }
-  },
-}
+  }
+};

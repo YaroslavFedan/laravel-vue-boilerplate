@@ -77,11 +77,11 @@ export default {
       if (this.$refs.form.validate()) {
         this.loading = true;
 
-        try{
-            await this.$store.dispatch("auth/toggleSecurity", this.code);
-            this.showMessage();
-        }catch(error){
-            this.serverErrors = error.response.data.errors
+        try {
+          await this.$store.dispatch("auth/toggleSecurity", this.code);
+          this.showMessage();
+        } catch (error) {
+          this.serverErrors = error.response.data.errors;
         }
 
         this.loading = false;

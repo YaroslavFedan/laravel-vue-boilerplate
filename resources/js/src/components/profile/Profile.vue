@@ -5,6 +5,6 @@
 
 <script>
 export default {
-  name: 'profile-form'
-}
+  name: "profile-form"
+};
 </script>

@@ -40,11 +40,11 @@ import CheckErrors from "@/mixins/check-errors.mixin";
 import Loading from "@/mixins/loading.mixin";
 
 export default {
-  name: "login-form",
+  name: "verify-security-form",
   directives: {
     mask
   },
-   mixins: [CheckErrors, Loading],
+  mixins: [CheckErrors, Loading],
   data: () => ({
     mask: "######",
     code: null,
@@ -64,15 +64,14 @@ export default {
       if (this.$refs.form.validate()) {
         this.$store.dispatch("setLoading", true);
 
-        try{
+        try {
           //валидируем Google Two Factor Authentication
           await this.$store.dispatch("auth/securityVerify", this.code);
           // сохраняем токен авторизации
           this.$store.dispatch("auth/authorize");
           this.$router.push({ name: "home" });
-
-        }catch( error ){
-          this.serverErrors = error.response.data.errors
+        } catch (error) {
+          this.serverErrors = error.response.data.errors;
         }
 
         this.$store.dispatch("setLoading", false);

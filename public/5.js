@@ -1,27 +1,16 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[5],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/components/g2fa/ValidationSecurityForm.vue?vue&type=script&lang=js&":
-/*!******************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/src/components/g2fa/ValidationSecurityForm.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/components/auth/RegisterForm.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/src/components/auth/RegisterForm.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue_the_mask__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-the-mask */ "./node_modules/vue-the-mask/dist/vue-the-mask.js");
-/* harmony import */ var vue_the_mask__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_the_mask__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _assets_image_google_icon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/assets/image/google-icon */ "./resources/js/src/assets/image/google-icon.js");
-/* harmony import */ var _mixins_check_errors_mixin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/mixins/check-errors.mixin */ "./resources/js/src/mixins/check-errors.mixin.js");
-/* harmony import */ var _mixins_loading_mixin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/mixins/loading.mixin */ "./resources/js/src/mixins/loading.mixin.js");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
+/* harmony import */ var _mixins_check_errors_mixin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/check-errors.mixin */ "./resources/js/src/mixins/check-errors.mixin.js");
+/* harmony import */ var _mixins_loading_mixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins/loading.mixin */ "./resources/js/src/mixins/loading.mixin.js");
 //
 //
 //
@@ -57,117 +46,132 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "login-form",
-  directives: {
-    mask: vue_the_mask__WEBPACK_IMPORTED_MODULE_1__["mask"]
-  },
-  mixins: [_mixins_check_errors_mixin__WEBPACK_IMPORTED_MODULE_3__["default"], _mixins_loading_mixin__WEBPACK_IMPORTED_MODULE_4__["default"]],
+  name: "register-form",
+  mixins: [_mixins_check_errors_mixin__WEBPACK_IMPORTED_MODULE_0__["default"], _mixins_loading_mixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
   data: function data() {
-    return {
-      mask: "######",
-      code: null,
-      icon: _assets_image_google_icon__WEBPACK_IMPORTED_MODULE_2__["default"].icon,
-      codeRules: [function (v) {
-        return !!v || "Code is required";
-      }, function (v) {
-        if (v !== null && v.length !== 6) {
-          return "Сode length should be 6 characters";
-        }
+    var _this = this;
 
-        return true;
-      }]
+    return {
+      show_password: false,
+      show_password_confirmation: false,
+      form: {
+        name: "",
+        email: "",
+        password: "",
+        password_confirmation: "",
+        rules: false
+      },
+      nameRules: [function (v) {
+        return !!v || "The name field is required.";
+      }],
+      emailRules: [function (v) {
+        return !!v || "The email field is required.";
+      }, function (v) {
+        return /.+@.+\..+/.test(v) || "The email must be a valid email address.";
+      }],
+      passwordRules: [function (v) {
+        return !!v || "The password field is required.";
+      }],
+      passwordConfirmationRules: [function (v) {
+        return !!v || "The password confirmation field is required.";
+      }, function (v) {
+        return v === _this.form.password || "The passwords does not match.";
+      }],
+      agreeRules: [function (v) {
+        return !!v || "You must agree to the rules!";
+      }],
+      messageSuccess: {
+        title: "Registered Successfully!",
+        message: "You can login here.",
+        type: "success"
+      }
     };
   },
   methods: {
-    submitHandler: function () {
-      var _submitHandler = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                if (this.$refs.form.validate()) {
-                  this.$store.dispatch("setLoading", true);
-                }
+    onRegister: function onRegister() {
+      var _this2 = this;
 
-              case 1:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
+      if (this.$refs.form.validate()) {
+        this.$store.dispatch("setLoading", true);
+        this.$store.dispatch("auth/register", this.form).then(function (response) {
+          _this2.$store.dispatch("setLoading", false);
 
-      function submitHandler() {
-        return _submitHandler.apply(this, arguments);
+          _this2.$store.dispatch("setMessage", _this2.messageSuccess);
+
+          _this2.$router.push({
+            name: "login"
+          });
+        })["catch"](function (error) {
+          _this2.$store.dispatch("setLoading", false);
+
+          _this2.serverErrors = error.response.data.errors;
+        });
       }
-
-      return submitHandler;
-    }()
+    }
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/components/g2fa/ValidationSecurityForm.vue?vue&type=style&index=0&id=5939b4f6&lang=scss&scoped=true&":
-/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/src/components/g2fa/ValidationSecurityForm.vue?vue&type=style&index=0&id=5939b4f6&lang=scss&scoped=true& ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, ".desc[data-v-5939b4f6] {\n  -webkit-box-align: center;\n          align-items: center;\n  margin-left: 13px;\n}\n.desc__img[data-v-5939b4f6] {\n  width: 24px;\n}\n.desc__title[data-v-5939b4f6] {\n  margin-left: 15px;\n}", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/components/g2fa/ValidationSecurityForm.vue?vue&type=style&index=0&id=5939b4f6&lang=scss&scoped=true&":
-/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/src/components/g2fa/ValidationSecurityForm.vue?vue&type=style&index=0&id=5939b4f6&lang=scss&scoped=true& ***!
-  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(/*! !../../../../../node_modules/css-loader!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--7-2!../../../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ValidationSecurityForm.vue?vue&type=style&index=0&id=5939b4f6&lang=scss&scoped=true& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/components/g2fa/ValidationSecurityForm.vue?vue&type=style&index=0&id=5939b4f6&lang=scss&scoped=true&");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/components/g2fa/ValidationSecurityForm.vue?vue&type=template&id=5939b4f6&scoped=true&":
-/*!**********************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/src/components/g2fa/ValidationSecurityForm.vue?vue&type=template&id=5939b4f6&scoped=true& ***!
-  \**********************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/components/auth/RegisterForm.vue?vue&type=template&id=4120253e&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/src/components/auth/RegisterForm.vue?vue&type=template&id=4120253e& ***!
+  \************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -187,17 +191,6 @@ var render = function() {
         _vm._v("Home accounting")
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "d-flex desc" }, [
-        _c("img", {
-          staticClass: "desc__img",
-          attrs: { src: _vm.icon, alt: "googleIcon" }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "desc__title" }, [
-          _c("h3", [_vm._v("Code google authenticator")])
-        ])
-      ]),
-      _vm._v(" "),
       _c(
         "v-card-text",
         [
@@ -205,68 +198,169 @@ var render = function() {
             "v-form",
             {
               ref: "form",
-              attrs: { "lazy-validation": "" },
+              attrs: { id: "register-form", "lazy-validation": "" },
               on: {
                 submit: function($event) {
                   $event.preventDefault()
-                  return _vm.submitHandler($event)
+                  return _vm.onRegister($event)
                 }
               }
             },
             [
               _c("v-text-field", {
-                directives: [
-                  {
-                    name: "mask",
-                    rawName: "v-mask",
-                    value: _vm.mask,
-                    expression: "mask"
-                  }
-                ],
-                ref: "input",
                 attrs: {
-                  id: "code",
-                  label:
-                    "Enter the 6-digit code in your Google Authenticator app",
-                  name: "code",
-                  rules: _vm.codeRules,
-                  "error-messages": _vm.checkError("code"),
+                  id: "name",
+                  label: "Name",
+                  name: "name",
+                  "prepend-icon": "person",
                   type: "text",
+                  rules: _vm.nameRules,
+                  "error-messages": _vm.checkError("name"),
                   required: ""
                 },
                 model: {
-                  value: _vm.code,
+                  value: _vm.form.name,
                   callback: function($$v) {
-                    _vm.code = $$v
+                    _vm.$set(_vm.form, "name", $$v)
                   },
-                  expression: "code"
+                  expression: "form.name"
                 }
               }),
               _vm._v(" "),
-              _c(
-                "v-card-actions",
-                { staticClass: "pl-0 pr-0" },
-                [
-                  _c("v-spacer"),
-                  _vm._v(" "),
-                  _c(
-                    "v-btn",
-                    {
-                      attrs: {
-                        type: "submit",
-                        block: "",
-                        loading: _vm.loading,
-                        color: "primary"
-                      }
-                    },
-                    [_vm._v("Send")]
-                  )
-                ],
-                1
-              )
+              _c("v-text-field", {
+                attrs: {
+                  id: "email",
+                  label: "Email",
+                  name: "email",
+                  "prepend-icon": "email",
+                  type: "email",
+                  rules: _vm.emailRules,
+                  "error-messages": _vm.checkError("email"),
+                  required: ""
+                },
+                model: {
+                  value: _vm.form.email,
+                  callback: function($$v) {
+                    _vm.$set(_vm.form, "email", $$v)
+                  },
+                  expression: "form.email"
+                }
+              }),
+              _vm._v(" "),
+              _c("v-text-field", {
+                attrs: {
+                  id: "password",
+                  label: "Password",
+                  name: "password",
+                  "prepend-icon": "lock",
+                  rules: _vm.passwordRules,
+                  "error-messages": _vm.checkError("password"),
+                  type: _vm.show_password ? "text" : "password",
+                  "append-icon": _vm.show_password ? "mdi-eye" : "mdi-eye-off",
+                  required: ""
+                },
+                on: {
+                  "click:append": function($event) {
+                    _vm.show_password = !_vm.show_password
+                  }
+                },
+                model: {
+                  value: _vm.form.password,
+                  callback: function($$v) {
+                    _vm.$set(_vm.form, "password", $$v)
+                  },
+                  expression: "form.password"
+                }
+              }),
+              _vm._v(" "),
+              _c("v-text-field", {
+                attrs: {
+                  id: "password_confirmation",
+                  label: "Confirm password",
+                  name: "password_confirmation",
+                  "prepend-icon": "lock",
+                  rules: _vm.passwordConfirmationRules,
+                  type: _vm.show_password_confirmation ? "text" : "password",
+                  "append-icon": _vm.show_password_confirmation
+                    ? "mdi-eye"
+                    : "mdi-eye-off",
+                  required: ""
+                },
+                on: {
+                  "click:append": function($event) {
+                    _vm.show_password_confirmation = !_vm.show_password_confirmation
+                  }
+                },
+                model: {
+                  value: _vm.form.password_confirmation,
+                  callback: function($$v) {
+                    _vm.$set(_vm.form, "password_confirmation", $$v)
+                  },
+                  expression: "form.password_confirmation"
+                }
+              }),
+              _vm._v(" "),
+              _c("v-checkbox", {
+                attrs: {
+                  rules: _vm.agreeRules,
+                  label: "I agree with the rules",
+                  required: ""
+                },
+                model: {
+                  value: _vm.form.rules,
+                  callback: function($$v) {
+                    _vm.$set(_vm.form, "rules", $$v)
+                  },
+                  expression: "form.rules"
+                }
+              })
             ],
             1
           )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-card-actions",
+        [
+          _c(
+            "v-btn",
+            {
+              attrs: {
+                block: "",
+                type: "submit",
+                color: "primary",
+                form: "register-form",
+                loading: _vm.loading
+              }
+            },
+            [_vm._v("Registration")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-card-actions",
+        [
+          _c("v-spacer"),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "pt-2 pb-2" },
+            [
+              _vm._v("\n      Already have an account?\n      "),
+              _c(
+                "router-link",
+                { attrs: { to: { name: "login" }, upper: "" } },
+                [_vm._v("Sign in")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("v-spacer")
         ],
         1
       )
@@ -281,20 +375,18 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./resources/js/src/components/g2fa/ValidationSecurityForm.vue":
-/*!*********************************************************************!*\
-  !*** ./resources/js/src/components/g2fa/ValidationSecurityForm.vue ***!
-  \*********************************************************************/
+/***/ "./resources/js/src/components/auth/RegisterForm.vue":
+/*!***********************************************************!*\
+  !*** ./resources/js/src/components/auth/RegisterForm.vue ***!
+  \***********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ValidationSecurityForm_vue_vue_type_template_id_5939b4f6_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ValidationSecurityForm.vue?vue&type=template&id=5939b4f6&scoped=true& */ "./resources/js/src/components/g2fa/ValidationSecurityForm.vue?vue&type=template&id=5939b4f6&scoped=true&");
-/* harmony import */ var _ValidationSecurityForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ValidationSecurityForm.vue?vue&type=script&lang=js& */ "./resources/js/src/components/g2fa/ValidationSecurityForm.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _ValidationSecurityForm_vue_vue_type_style_index_0_id_5939b4f6_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ValidationSecurityForm.vue?vue&type=style&index=0&id=5939b4f6&lang=scss&scoped=true& */ "./resources/js/src/components/g2fa/ValidationSecurityForm.vue?vue&type=style&index=0&id=5939b4f6&lang=scss&scoped=true&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
+/* harmony import */ var _RegisterForm_vue_vue_type_template_id_4120253e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RegisterForm.vue?vue&type=template&id=4120253e& */ "./resources/js/src/components/auth/RegisterForm.vue?vue&type=template&id=4120253e&");
+/* harmony import */ var _RegisterForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RegisterForm.vue?vue&type=script&lang=js& */ "./resources/js/src/components/auth/RegisterForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -302,67 +394,51 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
-  _ValidationSecurityForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ValidationSecurityForm_vue_vue_type_template_id_5939b4f6_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _ValidationSecurityForm_vue_vue_type_template_id_5939b4f6_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _RegisterForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _RegisterForm_vue_vue_type_template_id_4120253e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _RegisterForm_vue_vue_type_template_id_4120253e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  "5939b4f6",
+  null,
   null
   
 )
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/src/components/g2fa/ValidationSecurityForm.vue"
+component.options.__file = "resources/js/src/components/auth/RegisterForm.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/src/components/g2fa/ValidationSecurityForm.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************!*\
-  !*** ./resources/js/src/components/g2fa/ValidationSecurityForm.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************/
+/***/ "./resources/js/src/components/auth/RegisterForm.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/src/components/auth/RegisterForm.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ValidationSecurityForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ValidationSecurityForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/components/g2fa/ValidationSecurityForm.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ValidationSecurityForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RegisterForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./RegisterForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/components/auth/RegisterForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RegisterForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/src/components/g2fa/ValidationSecurityForm.vue?vue&type=style&index=0&id=5939b4f6&lang=scss&scoped=true&":
-/*!*******************************************************************************************************************************!*\
-  !*** ./resources/js/src/components/g2fa/ValidationSecurityForm.vue?vue&type=style&index=0&id=5939b4f6&lang=scss&scoped=true& ***!
-  \*******************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ValidationSecurityForm_vue_vue_type_style_index_0_id_5939b4f6_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader!../../../../../node_modules/css-loader!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--7-2!../../../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ValidationSecurityForm.vue?vue&type=style&index=0&id=5939b4f6&lang=scss&scoped=true& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/components/g2fa/ValidationSecurityForm.vue?vue&type=style&index=0&id=5939b4f6&lang=scss&scoped=true&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ValidationSecurityForm_vue_vue_type_style_index_0_id_5939b4f6_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ValidationSecurityForm_vue_vue_type_style_index_0_id_5939b4f6_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ValidationSecurityForm_vue_vue_type_style_index_0_id_5939b4f6_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ValidationSecurityForm_vue_vue_type_style_index_0_id_5939b4f6_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ValidationSecurityForm_vue_vue_type_style_index_0_id_5939b4f6_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "./resources/js/src/components/g2fa/ValidationSecurityForm.vue?vue&type=template&id=5939b4f6&scoped=true&":
-/*!****************************************************************************************************************!*\
-  !*** ./resources/js/src/components/g2fa/ValidationSecurityForm.vue?vue&type=template&id=5939b4f6&scoped=true& ***!
-  \****************************************************************************************************************/
+/***/ "./resources/js/src/components/auth/RegisterForm.vue?vue&type=template&id=4120253e&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/src/components/auth/RegisterForm.vue?vue&type=template&id=4120253e& ***!
+  \******************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ValidationSecurityForm_vue_vue_type_template_id_5939b4f6_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ValidationSecurityForm.vue?vue&type=template&id=5939b4f6&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/components/g2fa/ValidationSecurityForm.vue?vue&type=template&id=5939b4f6&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ValidationSecurityForm_vue_vue_type_template_id_5939b4f6_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RegisterForm_vue_vue_type_template_id_4120253e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./RegisterForm.vue?vue&type=template&id=4120253e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/components/auth/RegisterForm.vue?vue&type=template&id=4120253e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RegisterForm_vue_vue_type_template_id_4120253e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ValidationSecurityForm_vue_vue_type_template_id_5939b4f6_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RegisterForm_vue_vue_type_template_id_4120253e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

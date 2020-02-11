@@ -5,9 +5,9 @@
       <v-skeleton-loader :loading="loading" class="mx-auto" height="50vh" type="paragraph@1, image">
         <div v-if="!securityIsEnabled">
           <p>
-           Two-factor authentication (2FA) enhances access security by requiring two methods (also called factors) to verify your identity.
-           Two-factor authentication protects against phishing, social engineering and passwords,
-           and also protects your username from intruders using weak or stolen credentials.
+            Two-factor authentication (2FA) enhances access security by requiring two methods (also called factors) to verify your identity.
+            Two-factor authentication protects against phishing, social engineering and passwords,
+            and also protects your username from intruders using weak or stolen credentials.
           </p>
           <p>To enable two-factor authentication in your account, you need to follow these steps:</p>
           <p>1. Scan this barcode with your Google Authenticator App</p>

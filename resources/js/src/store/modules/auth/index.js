@@ -9,14 +9,14 @@ export default {
     tempToken: null,
     security: {
       google2fa_enable: null,
-      google2fa_url:""
+      google2fa_url: ""
     }
   },
   getters: {
     loggedIn: state => !!state.token,
     tempToken: state => state.tempToken,
     securityIsEnabled: state => !!state.security.google2fa_enable,
-    qrCode: state => state.security.google2fa_url,
+    qrCode: state => state.security.google2fa_url
   },
   mutations: {
     RETRIEVE_TOKEN: (state, token) => {
@@ -26,7 +26,7 @@ export default {
       state.tempToken = token;
     },
     SET_SECURITY_DATA: (state, payload) => {
-      state.security = {... state.security, ...payload}
+      state.security = { ...state.security, ...payload };
     },
     REMOVE_SECURITY_DATA: (state, payload) => {
       Vue.$cookies.remove("access_token");
@@ -83,7 +83,9 @@ export default {
     },
     security(context) {
       return new Promise((resolve, reject) => {
-        axios.defaults.headers["Authorization"] = `Bearer ${context.state.tempToken}`;
+        axios.defaults.headers[
+          "Authorization"
+        ] = `Bearer ${context.state.tempToken}`;
         axios
           .get("/security")
           .then(response => {
@@ -93,32 +95,34 @@ export default {
           .catch(error => reject(error));
       });
     },
-    securityVerify(context, data){
+    securityVerify(context, data) {
       return new Promise((resolve, reject) => {
-        axios.defaults.headers["Authorization"] = `Bearer ${context.state.tempToken}`;
+        axios.defaults.headers[
+          "Authorization"
+        ] = `Bearer ${context.state.tempToken}`;
         axios
-          .post("/security", {code:data})
+          .post("/security", { code: data })
           .then(response => {
             context.commit("SET_SECURITY_DATA", response.data);
             resolve(response);
           })
           .catch(error => {
             reject(error);
-          } );
-      })
+          });
+      });
     },
-    toggleSecurity(context, data){
+    toggleSecurity(context, data) {
       return new Promise((resolve, reject) => {
         axios
-          .patch("/security", {code:data})
+          .patch("/security", { code: data })
           .then(response => {
             context.commit("SET_SECURITY_DATA", response.data);
             resolve(response);
           })
           .catch(error => {
             reject(error);
-          } );
-      })
+          });
+      });
     }
   }
 };

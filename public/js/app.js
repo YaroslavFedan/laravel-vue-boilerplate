@@ -2215,7 +2215,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "navbar",
@@ -2277,6 +2276,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixins_desktop_mixin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/mixins/desktop.mixin */ "./resources/js/src/mixins/desktop.mixin.js");
+//
+//
+//
 //
 //
 //
@@ -62273,22 +62275,22 @@ new Vue({
 var map = {
 	"./components/auth/LoginForm.vue": [
 		"./resources/js/src/components/auth/LoginForm.vue",
-		1,
-		21
+		0,
+		6
 	],
 	"./components/auth/RegisterForm.vue": [
 		"./resources/js/src/components/auth/RegisterForm.vue",
-		4
+		5
 	],
 	"./components/g2fa/ToggleSecurityForm.vue": [
 		"./resources/js/src/components/g2fa/ToggleSecurityForm.vue",
-		1,
-		6
+		0,
+		2
 	],
-	"./components/g2fa/ValidationSecurityForm.vue": [
-		"./resources/js/src/components/g2fa/ValidationSecurityForm.vue",
-		1,
-		3
+	"./components/g2fa/VerifySecurityForm.vue": [
+		"./resources/js/src/components/g2fa/VerifySecurityForm.vue",
+		0,
+		4
 	],
 	"./components/partials/Navbar.vue": [
 		"./resources/js/src/components/partials/Navbar.vue"
@@ -62298,42 +62300,42 @@ var map = {
 	],
 	"./components/profile/Profile.vue": [
 		"./resources/js/src/components/profile/Profile.vue",
-		8
+		9
 	],
 	"./components/profile/Security.vue": [
 		"./resources/js/src/components/profile/Security.vue",
-		1,
-		6,
-		22
+		0,
+		2,
+		7
 	],
 	"./components/todo/TodoCheckAll.vue": [
 		"./resources/js/src/components/todo/TodoCheckAll.vue",
-		9
+		10
 	],
 	"./components/todo/TodoDeleteCompleted.vue": [
 		"./resources/js/src/components/todo/TodoDeleteCompleted.vue",
-		10
+		11
 	],
 	"./components/todo/TodoFiltered.vue": [
 		"./resources/js/src/components/todo/TodoFiltered.vue",
-		11
+		12
 	],
 	"./components/todo/TodoForm.vue": [
 		"./resources/js/src/components/todo/TodoForm.vue",
-		7
+		8
 	],
 	"./components/todo/TodoItem.vue": [
 		"./resources/js/src/components/todo/TodoItem.vue",
-		0
+		1
 	],
 	"./components/todo/TodoItemsRemaining.vue": [
 		"./resources/js/src/components/todo/TodoItemsRemaining.vue",
-		12
+		13
 	],
 	"./components/todo/TodoList.vue": [
 		"./resources/js/src/components/todo/TodoList.vue",
-		0,
-		2
+		1,
+		3
 	],
 	"./layouts/AuthLayout.vue": [
 		"./resources/js/src/layouts/AuthLayout.vue"
@@ -62343,35 +62345,35 @@ var map = {
 	],
 	"./views/Error.vue": [
 		"./resources/js/src/views/Error.vue",
-		13
+		14
 	],
 	"./views/main/Categories.vue": [
 		"./resources/js/src/views/main/Categories.vue",
-		14
+		15
 	],
 	"./views/main/History.vue": [
 		"./resources/js/src/views/main/History.vue",
-		15
+		16
 	],
 	"./views/main/Home.vue": [
 		"./resources/js/src/views/main/Home.vue",
-		16
+		17
 	],
 	"./views/main/Planning.vue": [
 		"./resources/js/src/views/main/Planning.vue",
-		17
+		18
 	],
 	"./views/main/Profile.vue": [
 		"./resources/js/src/views/main/Profile.vue",
-		18
+		19
 	],
 	"./views/main/Record.vue": [
 		"./resources/js/src/views/main/Record.vue",
-		19
+		20
 	],
 	"./views/main/Task.vue": [
 		"./resources/js/src/views/main/Task.vue",
-		20
+		21
 	]
 };
 function webpackAsyncContext(req) {
@@ -62580,21 +62582,21 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (function (value) {
-  var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'date';
+  var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "date";
   var options = {};
 
-  if (format.includes('date')) {
+  if (format.includes("date")) {
     options.day = "2-digit";
     options.month = "long"; // options.year ="numeric";
   }
 
-  if (format.includes('time')) {
+  if (format.includes("time")) {
     options.hour = "2-digit";
     options.minute = "2-digit";
     options.second = "2-digit";
   }
 
-  return new Intl.DateTimeFormat('ru-Ru', options).format(new Date(value));
+  return new Intl.DateTimeFormat("ru-Ru", options).format(new Date(value));
 });
 
 /***/ }),
@@ -62795,7 +62797,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var opt = {
-  position: 'top right',
+  position: "top right",
   showDuration: 1000,
   timeOut: 5000,
   progressBar: true,
@@ -62835,7 +62837,7 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuetify__WEBPACK_IMPORTED_MODULE_1___default.a);
 var opts = {
   icons: {
-    iconfont: 'mdiSvg'
+    iconfont: "mdiSvg"
   },
   theme: {
     themes: {
@@ -62867,13 +62869,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store */ "./resources/js/src/store/index.js");
 
 
- // // import ProfileForm from "../components/profile/ProfileForm.vue";
-// import ProfileSecurityForm from "../components/profile/SecurityForm.vue";
-// // const ProfileForm = () => import('../components/profile/ProfileForm.vue')
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
 function lazyLoad(page) {
+  /* webpackChunkName: "[request]" */
   return function () {
     return __webpack_require__("./resources/js/src lazy recursive ^\\.\\/.*\\.vue$")("./".concat(page, ".vue"));
   };
@@ -62898,7 +62898,7 @@ var routes = [{
 }, {
   path: "/security",
   name: "security",
-  component: lazyLoad("components/g2fa/ValidationSecurityForm"),
+  component: lazyLoad("components/g2fa/VerifySecurityForm"),
   meta: {
     layout: "auth",
     securityIsEnabled: true

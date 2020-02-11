@@ -2,13 +2,10 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import store from "../store";
 
-// // import ProfileForm from "../components/profile/ProfileForm.vue";
-// import ProfileSecurityForm from "../components/profile/SecurityForm.vue";
-// // const ProfileForm = () => import('../components/profile/ProfileForm.vue')
-
 Vue.use(VueRouter);
 
 function lazyLoad(page) {
+  /* webpackChunkName: "[request]" */
   return () => import(`../${page}.vue`);
 }
 
@@ -34,7 +31,7 @@ const routes = [
   {
     path: "/security",
     name: "security",
-    component: lazyLoad("components/g2fa/ValidationSecurityForm"),
+    component: lazyLoad("components/g2fa/VerifySecurityForm"),
     meta: {
       layout: "auth",
       securityIsEnabled: true
@@ -107,26 +104,26 @@ const routes = [
       layout: "main",
       requiresAuth: true
     },
-    children:[
+    children: [
       {
-        path:"/",
+        path: "/",
         name: "profile",
         component: lazyLoad("components/profile/Profile"),
         meta: {
           layout: "main",
-          pageTitle: "Profile",
-        },
+          pageTitle: "Profile"
+        }
       },
       {
-        path:"security",
+        path: "security",
         name: "profile-security",
         component: lazyLoad("components/profile/Security"),
         meta: {
           layout: "main",
-          pageTitle: "Security",
-        },
+          pageTitle: "Security"
+        }
       }
-    ],
+    ]
   },
   {
     path: "*",

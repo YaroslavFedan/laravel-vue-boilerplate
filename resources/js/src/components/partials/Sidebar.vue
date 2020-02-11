@@ -15,8 +15,8 @@
       </v-list-item>
     </v-list>
 
-    <v-list dense v-for="item in items"  :key="item.title">
-      <v-list-item :to="{name:item.name}" :exact="item.exact" v-if="!item.children" >
+    <v-list dense v-for="item in items" :key="item.title">
+      <v-list-item :to="{name:item.name}" :exact="item.exact" v-if="!item.children">
         <template v-if="!item.children">
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
@@ -28,18 +28,21 @@
         </template>
       </v-list-item>
 
-      <v-list-group v-else  :prepend-icon="item.icon">
+      <v-list-group v-else :prepend-icon="item.icon">
         <template v-slot:activator>
           <v-list-item-title>{{item.title}}</v-list-item-title>
         </template>
 
-        <v-list-item v-for="child in item.children" :key="child.title" :to="{name:child.name}" :exact="child.exact" >
+        <v-list-item
+          v-for="child in item.children"
+          :key="child.title"
+          :to="{name:child.name}"
+          :exact="child.exact"
+        >
           <v-list-item-title v-text="child.title"></v-list-item-title>
         </v-list-item>
-
       </v-list-group>
     </v-list>
-
   </v-navigation-drawer>
 </template>
 

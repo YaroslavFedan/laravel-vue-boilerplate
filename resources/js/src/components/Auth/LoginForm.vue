@@ -32,7 +32,7 @@
 
         <v-card-actions justify-center>
           <v-spacer></v-spacer>
-          <v-btn type="submit" block color="primary" :loading="loading" >Login</v-btn>
+          <v-btn type="submit" block color="primary" :loading="loading">Login</v-btn>
         </v-card-actions>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -91,7 +91,7 @@ export default {
             this.$store.dispatch("auth/authorize");
             this.$router.push({ name: "home" });
           } else {
-             //проходим валидацию Google Two Factor Authentication
+            //проходим валидацию Google Two Factor Authentication
             this.$router.push({ name: "security" });
           }
         } catch (error) {

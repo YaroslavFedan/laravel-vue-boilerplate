@@ -56,12 +56,11 @@
         ></v-text-field>
 
         <v-checkbox
-        v-model="form.rules"
-        :rules="agreeRules"
-        label="I agree with the rules"
-        required
-      ></v-checkbox>
-
+          v-model="form.rules"
+          :rules="agreeRules"
+          label="I agree with the rules"
+          required
+        ></v-checkbox>
       </v-form>
     </v-card-text>
 
@@ -76,7 +75,7 @@
     </v-card-actions>
 
     <v-card-actions>
- <v-spacer></v-spacer>
+      <v-spacer></v-spacer>
       <div class="pt-2 pb-2">
         Already have an account?
         <router-link :to="{name:'login'}" upper>Sign in</router-link>
@@ -102,7 +101,7 @@ export default {
         email: "",
         password: "",
         password_confirmation: "",
-        rules:false
+        rules: false
       },
       nameRules: [v => !!v || "The name field is required."],
       emailRules: [
@@ -114,7 +113,7 @@ export default {
         v => !!v || "The password confirmation field is required.",
         v => v === this.form.password || "The passwords does not match."
       ],
-      agreeRules: [v => !!v || 'You must agree to the rules!'],
+      agreeRules: [v => !!v || "You must agree to the rules!"],
       messageSuccess: {
         title: "Registered Successfully!",
         message: "You can login here.",

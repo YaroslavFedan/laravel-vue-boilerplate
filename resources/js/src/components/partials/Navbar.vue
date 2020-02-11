@@ -1,8 +1,7 @@
 <template>
   <v-app-bar class="primary" :prominent.sync="mobile" dark app>
     <v-app-bar-nav-icon @click.stop="toggle"></v-app-bar-nav-icon>
-    <v-toolbar-title v-if="!desktop" >{{pageTitle}}</v-toolbar-title>
-
+    <v-toolbar-title v-if="!desktop">{{pageTitle}}</v-toolbar-title>
 
     <div class="datetime" :class="{'mini':!desktop}">
       <v-menu>
@@ -34,7 +33,7 @@
 </template>
 
 <script>
-import desktop from '@/mixins/desktop.mixin';
+import desktop from "@/mixins/desktop.mixin";
 export default {
   name: "navbar",
   mixins: [desktop],
@@ -51,7 +50,7 @@ export default {
     pageTitle() {
       return this.$route.meta.pageTitle || null;
     },
-    mobile(){
+    mobile() {
       return !this.desktop;
     }
   },
@@ -60,7 +59,9 @@ export default {
       eventBus.$emit("toggleNavbar");
     },
     logout() {
-      this.$store.dispatch("auth/logout").then(response => this.$router.push({ name: "login" }));
+      this.$store
+        .dispatch("auth/logout")
+        .then(response => this.$router.push({ name: "login" }));
     }
   },
   mounted() {
@@ -75,13 +76,12 @@ export default {
 </script>
 
 <style lang="scss">
-
 header {
   left: 0px !important;
 }
 .datetime {
   margin-left: 60px;
-  &.mini{
+  &.mini {
     margin: 0 auto;
   }
 }
