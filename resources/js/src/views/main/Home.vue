@@ -1,10 +1,10 @@
 
 <template>
-  <h1>Home</h1>
+  <home-convertor-exchange-rates></home-convertor-exchange-rates>
 </template>
 
 <script>
 export default {
-  name:'home'
-}
+
+};
 </script>

@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[4],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[1],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/main/Home.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************!*\
@@ -33,7 +33,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("home-exchange-rates")
+  return _c("home-convertor-exchange-rates")
 }
 var staticRenderFns = []
 render._withStripped = true

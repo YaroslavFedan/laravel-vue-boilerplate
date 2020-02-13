@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[4],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[10],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/src/views/main/Home.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************!*\
@@ -9,12 +9,65 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_material_Card__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/material/Card */ "./resources/js/src/components/material/Card.vue");
 //
 //
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+ // import HelperOffset from "@/components/helper/Offset";
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'home',
+  components: {
+    MaterialCard: _components_material_Card__WEBPACK_IMPORTED_MODULE_0__["default"] // HelperOffset
+
+  }
+});
 
 /***/ }),
 
@@ -33,7 +86,177 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("home-exchange-rates")
+  return _c(
+    "material-card",
+    {
+      attrs: {
+        color: "green",
+        title: "Edit Profile",
+        text: "Complete your profile"
+      }
+    },
+    [
+      _c(
+        "v-form",
+        [
+          _c(
+            "v-container",
+            { attrs: { "py-0": "" } },
+            [
+              _c(
+                "v-layout",
+                { attrs: { wrap: "" } },
+                [
+                  _c(
+                    "v-flex",
+                    { attrs: { xs12: "", md4: "" } },
+                    [
+                      _c("v-text-field", {
+                        attrs: { label: "Company (disabled)", disabled: "" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-flex",
+                    { attrs: { xs12: "", md4: "" } },
+                    [
+                      _c("v-text-field", {
+                        staticClass: "purple-input",
+                        attrs: { label: "User Name" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-flex",
+                    { attrs: { xs12: "", md4: "" } },
+                    [
+                      _c("v-text-field", {
+                        staticClass: "purple-input",
+                        attrs: { label: "Email Address" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-flex",
+                    { attrs: { xs12: "", md6: "" } },
+                    [
+                      _c("v-text-field", {
+                        staticClass: "purple-input",
+                        attrs: { label: "First Name" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-flex",
+                    { attrs: { xs12: "", md6: "" } },
+                    [
+                      _c("v-text-field", {
+                        staticClass: "purple-input",
+                        attrs: { label: "Last Name" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-flex",
+                    { attrs: { xs12: "", md12: "" } },
+                    [
+                      _c("v-text-field", {
+                        staticClass: "purple-input",
+                        attrs: { label: "Adress" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-flex",
+                    { attrs: { xs12: "", md4: "" } },
+                    [
+                      _c("v-text-field", {
+                        staticClass: "purple-input",
+                        attrs: { label: "City" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-flex",
+                    { attrs: { xs12: "", md4: "" } },
+                    [
+                      _c("v-text-field", {
+                        staticClass: "purple-input",
+                        attrs: { label: "Country" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-flex",
+                    { attrs: { xs12: "", md4: "" } },
+                    [
+                      _c("v-text-field", {
+                        staticClass: "purple-input",
+                        attrs: { label: "Postal Code", type: "number" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-flex",
+                    { attrs: { xs12: "" } },
+                    [
+                      _c("v-textarea", {
+                        staticClass: "purple-input",
+                        attrs: {
+                          label: "About Me",
+                          value:
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-flex",
+                    { attrs: { xs12: "", "text-xs-right": "" } },
+                    [
+                      _c(
+                        "v-btn",
+                        {
+                          staticClass: "mx-0 font-weight-light",
+                          attrs: { color: "success" }
+                        },
+                        [_vm._v("Update Profile")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

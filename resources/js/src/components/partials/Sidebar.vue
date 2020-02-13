@@ -1,5 +1,15 @@
 <template>
-  <v-navigation-drawer :mini-variant="mini" absolute permanent app>
+  <v-navigation-drawer
+    :mini-variant="miniVariant"
+    :clipped="clipped"
+    :permanent="$vuetify.breakpoint.mdOnly"
+    :temporary="$vuetify.breakpoint.smAndDown"
+    v-model="drawer"
+    app
+  >
+    <profile-badge></profile-badge>
+
+    <v-divider></v-divider>
 
     <v-list dense v-for="item in items" :key="item.title">
       <v-list-item :to="{name:item.name}" :exact="item.exact" v-if="!item.children">
@@ -7,7 +17,6 @@
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
-
           <v-list-item-content>
             <v-list-item-title>{{ item.title }}</v-list-item-title>
           </v-list-item-content>
@@ -33,31 +42,44 @@
 </template>
 
 <script>
-import desktop from "@/mixins/desktop.mixin";
 export default {
-  name: "sidebar",
-  mixins: [desktop],
   props: ["items", "value"],
-  data: () => ({
-    mini: null
-  }),
-  computed: {},
-  mounted() {
-    if (this.mini === null) {
-      this.mini = !this.desktop;
+  data() {
+    return {
+      clipped: true,
+      drawer: true,
+      miniVariant: false,
+      temporary: this.isMobile()
+    };
+  },
+  methods: {
+    toggleDrawer() {
+      let mobile = this.isMobile();
+
+      if (mobile) {
+        this.drawer = !this.drawer;
+        this.miniVariant = false;
+      } else {
+        this.drawer = true;
+        this.miniVariant = !this.miniVariant;
+      }
+    },
+    isMobile() {
+      return window.innerWidth < 993;
     }
-    eventBus.$on("toggleNavbar", () => {
-      this.mini = !this.mini;
-    });
+  },
+  mounted() {
+    eventBus.$on("toggleNavbar", this.toggleDrawer);
   }
 };
 </script>
 <style lang="scss">
-nav {
+.v-navigation-drawer {
   top: 64px !important;
   max-height: calc(100% - 64px) !important;
-}
-.mt-max {
-  margin-top: 60px;
+  &--is-mobile {
+    top: 0 !important;
+    max-height: 100% !important;
+  }
 }
 </style>

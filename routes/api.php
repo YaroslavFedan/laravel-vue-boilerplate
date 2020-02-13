@@ -41,5 +41,8 @@ Route::namespace('Api')->group(function () {
     Route::patch('security', "SecurityController@toggle");
 
     Route::post('/logout', 'AuthController@logout');
+
+    Route::get('info', "UserController@index");
+
   });
 });

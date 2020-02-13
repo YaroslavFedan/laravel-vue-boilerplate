@@ -1,27 +1,19 @@
 <template>
   <v-form id="security-form" ref="form" @submit.prevent="submitHandler" lazy-validation>
     <v-text-field
-      id="code"
-      label="Enter the 6-digit code in your Google Authenticator app"
-      name="code"
-      v-mask="mask"
-      v-model="code"
-      :rules="codeRules"
-      :error-messages="checkError('code')"
-      type="text"
-      ref="input"
-      required
-    ></v-text-field>
-
-    <v-card-actions class="pl-0 pr-0">
-      <v-btn
-        type="submit"
-        block
-        :color="btnColor"
-        :loading="loading"
-        form="security-form"
-      >{{btnTitle}}</v-btn>
-    </v-card-actions>
+        id="code"
+        label="Enter the 6-digit code in your Google Authenticator app"
+        name="code"
+        v-mask="mask"
+        v-model="code"
+        :rules="codeRules"
+        :error-messages="checkError('code')"
+        type="text"
+        required
+      ></v-text-field>
+    <v-flex xs12 mt-2 text-xs-right>
+      <v-btn type="submit" :color="btnColor" :loading="loading">{{btnTitle}}</v-btn>
+    </v-flex>
   </v-form>
 </template>
 
@@ -69,7 +61,7 @@ export default {
     messageDisabled: {
       title: "Two-factor authentication",
       message: "Successfully Disabled.",
-      type: "error"
+      type: "warn"
     }
   }),
   methods: {
@@ -86,7 +78,6 @@ export default {
 
         this.loading = false;
         this.code = null;
-        this.$refs.input.blur();
         this.$refs.form.resetValidation();
       }
     },
@@ -97,7 +88,8 @@ export default {
         this.$store.dispatch("setMessage", this.messageDisabled);
       }
     }
-  }
+  },
+
 };
 </script>
 

@@ -49,7 +49,7 @@ class AuthController extends Controller
     ]);
 
     $user = new User($request->all());
-    $user->password =  Hash::make($request->password);
+    $user->password = Hash::make($request->password);
     $user->save();
 
     return response()->json('Registration completed successfully', 200);

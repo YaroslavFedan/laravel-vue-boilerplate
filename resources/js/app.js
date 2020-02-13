@@ -27,19 +27,25 @@ window.Vue = require('vue');
 
 
 
+// Components
+import '@/components'
 
 import App from './App.vue';
-import store from './src/store';
-import router from "./src/router";
-import vuetify from './src/plugins/vuetify.plugin';
-import './src/plugins/toast.plugin';
-import dateFilter from './src/filters/date.filter.js';
+import store from '@/store';
+import router from "@/router";
+
+import dateFilter from '@/filters/date.filter.js';
+import currencyFilter from '@/filters/currency.filter.js';
+
+import vuetify from '@/plugins/vuetify.plugin';
+import '@/plugins/toast.plugin';
 
 
 window.eventBus = new Vue();
 Vue.config.productionTip = false;
 
 Vue.filter('date',dateFilter);
+Vue.filter('currency',currencyFilter);
 
 new Vue({
     router,

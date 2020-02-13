@@ -1,16 +1,14 @@
 <template>
-  <v-app-bar class="primary" :prominent.sync="mobile" dark app>
-    <v-app-bar-nav-icon @click.stop="toggle"></v-app-bar-nav-icon>
-    <v-toolbar-title v-if="!desktop">{{pageTitle}}</v-toolbar-title>
-
-    <div class="datetime" :class="{'mini':!desktop}">
+  <v-app-bar class="primary" dark app>
+    <v-app-bar-nav-icon @click.native.stop="toggle"></v-app-bar-nav-icon>
+    <v-spacer></v-spacer>
+    <div class="datetime" >
       <v-menu>
         <template v-slot:activator="{ on }">
           <v-btn icon v-on="on">{{date | date('datetime')}}</v-btn>
         </template>
       </v-menu>
     </div>
-
     <v-spacer></v-spacer>
 
     <v-menu left bottom>
@@ -33,10 +31,8 @@
 </template>
 
 <script>
-import desktop from "@/mixins/desktop.mixin";
+
 export default {
-  name: "navbar",
-  mixins: [desktop],
   data: () => ({
     date: new Date(),
     interval: null,
@@ -46,22 +42,17 @@ export default {
       locale: "ru"
     }
   }),
-  computed: {
-    pageTitle() {
-      return this.$route.meta.pageTitle || null;
-    },
-    mobile() {
-      return !this.desktop;
-    }
-  },
   methods: {
     toggle() {
       eventBus.$emit("toggleNavbar");
     },
-    logout() {
-      this.$store
-        .dispatch("auth/logout")
-        .then(response => this.$router.push({ name: "login" }));
+    async logout() {
+      try {
+        await this.$store.dispatch("auth/logout");
+        this.$router.push({ name: "login" });
+      } catch (e) {
+        console.log(e);
+      }
     }
   },
   mounted() {
@@ -79,10 +70,5 @@ export default {
 header {
   left: 0px !important;
 }
-.datetime {
-  margin-left: 60px;
-  &.mini {
-    margin: 0 auto;
-  }
-}
+
 </style>
