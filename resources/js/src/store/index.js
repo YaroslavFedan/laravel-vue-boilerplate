@@ -2,7 +2,6 @@
 // Lib imports
 import Vue from "vue";
 import Vuex from "vuex";
-import VueCookies from "vue-cookies";
 import "@/axios";
 
 // Store functionality
@@ -13,9 +12,6 @@ import mutations from './mutations'
 import state from './state'
 
 Vue.use(Vuex);
-Vue.use(VueCookies);
-Vue.$cookies.config("1d");
-
 
 const store = new Vuex.Store({
   strict: true,
