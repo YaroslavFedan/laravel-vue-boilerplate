@@ -7,7 +7,7 @@
     v-model="drawer"
     app
   >
-    <profile-badge></profile-badge>
+    <partials-account-badge></partials-account-badge>
 
     <v-divider></v-divider>
 

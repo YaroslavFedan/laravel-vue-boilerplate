@@ -9,12 +9,87 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      messageError: {
+        title: "An error occurred on the server",
+        message: "Try again later.",
+        type: "error",
+        timeOut: 10000
+      }
+    };
+  },
+  computed: {
+    exchange: function exchange() {
+      return this.$store.getters["exchange/exchange"];
+    }
+  },
+  methods: {
+    fetchExchangeData: function () {
+      var _fetchExchangeData = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return this.$store.dispatch("exchange/fetch");
+
+              case 3:
+                _context.next = 8;
+                break;
+
+              case 5:
+                _context.prev = 5;
+                _context.t0 = _context["catch"](0);
+                this.$store.dispatch("setMessage", this.messageError);
+
+              case 8:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this, [[0, 5]]);
+      }));
+
+      function fetchExchangeData() {
+        return _fetchExchangeData.apply(this, arguments);
+      }
+
+      return fetchExchangeData;
+    }()
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    this.fetchExchangeData();
+    eventBus.$on("refreshExchangeData", function () {
+      _this.fetchExchangeData();
+    });
+  }
+});
 
 /***/ }),
 
@@ -33,7 +108,29 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("home-convertor-exchange-rates")
+  return _c(
+    "v-layout",
+    { attrs: { row: "", wrap: "" } },
+    [
+      _c(
+        "v-flex",
+        { staticClass: "pa-2", attrs: { "d-flex": "", xs12: "", md4: "" } },
+        [_c("home-convert-form", { attrs: { exchange: _vm.exchange } })],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-flex",
+        {
+          staticClass: "pa-2",
+          attrs: { "d-flex": "", xs12: "", md8: "", "child-flex": "" }
+        },
+        [_c("home-exchange-rates", { attrs: { exchange: _vm.exchange } })],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

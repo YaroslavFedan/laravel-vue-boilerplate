@@ -1,6 +1,6 @@
 <template>
   <v-card :loading="loading" class="elevation-12 pl-5 pr-5">
-    <v-card-title primary-title>Home accounting</v-card-title>
+    <v-card-title primary-title>Laravel Vue</v-card-title>
 
     <v-card-text>
       <v-form @submit.prevent="submitHandler" ref="form" id="login-form" lazy-validation>
