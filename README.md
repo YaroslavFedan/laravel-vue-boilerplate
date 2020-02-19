@@ -46,5 +46,10 @@ PASSPORT_CLIENT_ID =
 PASSPORT_CLIENT_SECRET = 
 ```
 
+Установить зависимости для npm
+```shell script
+npm install
+```
+
 
 
