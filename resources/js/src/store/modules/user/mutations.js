@@ -3,7 +3,7 @@ export default {
     state.info = {
       ...state.info,
       ...payload
-    }
+    };
   },
-  CLEAR_INFO: (state) => state.info = {}
-}
+  CLEAR_INFO: state => (state.info = {})
+};

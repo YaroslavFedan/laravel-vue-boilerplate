@@ -20,7 +20,7 @@ export default {
   computed: {
     layout() {
       return (this.$route.meta.layout || "auth") + "-layout";
-    },
+    }
   },
   created() {
     this.$store.subscribe((mutation, state) => {

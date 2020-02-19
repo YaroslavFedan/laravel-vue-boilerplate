@@ -1,6 +1,6 @@
 <template>
   <material-card color="warning" title="Convert" min-width="100%">
-    <v-skeleton-loader class="mx-auto" type="list-item@4" :loading="!exchange.length">
+    <v-skeleton-loader class="mx-auto" type="list-item@4">
       <v-form ref="form" lazy-validation>
         <v-layout row wrap>
           <v-flex xs6 class="px-3">
@@ -17,7 +17,6 @@
           name="amount"
           v-model="amount"
           v-mask="mask"
-          :rules="amountRules"
           type="text"
           autocomplete="on"
           required
@@ -52,13 +51,12 @@ export default {
   data() {
     let ccy = this.$store.getters["exchange/base_ccy"];
     return {
-      sale_ccy: ccy,           // код валюты, по умолчанию - базовая
-      buy_ccy: ccy,            // код валюты, по умолчанию - базовая
-      amount: null,            // введенная сумма
-      sale: [],                // объект выбранной валюты для продажи
-      buy: [],                 // объект выбранной валюты для покупки
-      mask: "##########",      // маска для ввода суммы
-      amountRules: [v => !!v]  // правила валидации
+      sale_ccy: ccy, // код валюты, по умолчанию - базовая
+      buy_ccy: ccy, // код валюты, по умолчанию - базовая
+      amount: null, // введенная сумма
+      sale: [], // объект выбранной валюты для продажи
+      buy: [], // объект выбранной валюты для покупки
+      mask: "##########" // маска для ввода суммы
     };
   },
   computed: {

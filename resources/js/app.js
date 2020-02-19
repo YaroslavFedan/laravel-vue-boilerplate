@@ -4,9 +4,8 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-
-window.axios = require('axios');
-window.Vue = require('vue');
+window.axios = require("axios");
+window.Vue = require("vue");
 
 /**
  * The following block of code may be used to automatically register your
@@ -25,32 +24,28 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-
-
 // Components
-import '@/components'
+import "@/components";
 
-import App from './App.vue';
-import store from '@/store';
+import App from "./App.vue";
+import store from "@/store";
 import router from "@/router";
 
-import dateFilter from '@/filters/date.filter.js';
-import currencyFilter from '@/filters/currency.filter.js';
+import dateFilter from "@/filters/date.filter.js";
+import currencyFilter from "@/filters/currency.filter.js";
 
-import vuetify from '@/plugins/vuetify.plugin';
-import '@/plugins/toast.plugin';
-
+import vuetify from "@/plugins/vuetify.plugin";
+import "@/plugins/toast.plugin";
 
 window.eventBus = new Vue();
 Vue.config.productionTip = false;
 
-Vue.filter('date',dateFilter);
-Vue.filter('currency',currencyFilter);
+Vue.filter("date", dateFilter);
+Vue.filter("currency", currencyFilter);
 
 new Vue({
-    router,
-    store,
-    vuetify,
-    render: h => h(App)
-  }).$mount("#app");
-
+  router,
+  store,
+  vuetify,
+  render: h => h(App)
+}).$mount("#app");

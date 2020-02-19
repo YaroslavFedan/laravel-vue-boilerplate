@@ -2,7 +2,7 @@
   <v-app-bar class="primary" dark app>
     <v-app-bar-nav-icon @click.native.stop="toggle"></v-app-bar-nav-icon>
     <v-spacer></v-spacer>
-    <div class="datetime" >
+    <div class="datetime">
       <v-menu>
         <template v-slot:activator="{ on }">
           <v-btn icon v-on="on">{{date | date('datetime')}}</v-btn>
@@ -31,7 +31,6 @@
 </template>
 
 <script>
-
 export default {
   data: () => ({
     date: new Date(),
@@ -50,8 +49,8 @@ export default {
       try {
         await this.$store.dispatch("auth/logout");
         this.$router.push({ name: "login" });
-      } catch (e) {
-        console.log(e);
+      } catch (error) {
+        this.$store.dispatch("setError", error);
       }
     }
   },
@@ -70,5 +69,4 @@ export default {
 header {
   left: 0px !important;
 }
-
 </style>

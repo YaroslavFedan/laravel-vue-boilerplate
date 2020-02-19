@@ -1,19 +1,34 @@
+import toast from "@/utils/toast.util";
+import messages from "@/utils/messages";
 
 export default {
-  setMessage({ commit }, data) {
-    const colors = {
-      success: "#4caf50",
-      info: "#2196f3",
-      warning: "#FFC107",
-      error: "#F44336"
-    };
-    data.color = colors[data.type];
-    commit("UPDATE_MESSAGE", data);
+  setMessage({ commit }, payload) {
+    const { type, code, ...options } = payload;
+    const func = toast[type] || toast["success"];
+
+    if (messages[code]) {
+      const messageData = func(messages[code] || "", options);
+      commit("UPDATE_MESSAGE", messageData);
+    }
   },
   setLoading({ commit }, status) {
     commit("SET_LOADING", status);
   },
+  setError({ commit, dispatch }, error) {
+    const { data, status, statusText } = error.response;
 
+    switch (status) {
+      case 422:
+        //error form validation
+        commit("FORM_ERRORS", data.errors);
+        break;
+      default:
+        dispatch("setMessage", { type: "error", code: status, timeOut: 10000 });
+    }
+  },
+  clearError({ commit }) {
+    commit("FORM_ERRORS", []);
+  },
   clearData(context) {
     // очищение всех данных после выхода из системы
     context.commit("auth/REMOVE_SECURITY_DATA");

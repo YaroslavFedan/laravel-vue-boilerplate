@@ -12,7 +12,7 @@
           type="text"
           v-model="form.name"
           :rules="nameRules"
-          :error-messages="checkError('name')"
+          :error-messages="formError('name')"
           required
         ></v-text-field>
 
@@ -24,7 +24,7 @@
           type="email"
           v-model="form.email"
           :rules="emailRules"
-          :error-messages="checkError('email')"
+          :error-messages="formError('email')"
           required
         ></v-text-field>
 
@@ -35,7 +35,7 @@
           prepend-icon="lock"
           v-model="form.password"
           :rules="passwordRules"
-          :error-messages="checkError('password')"
+          :error-messages="formError('password')"
           :type="show_password ? 'text' : 'password'"
           @click:append="show_password = !show_password"
           :append-icon="show_password ? 'mdi-eye' : 'mdi-eye-off'"
@@ -58,6 +58,7 @@
         <v-checkbox
           v-model="form.rules"
           :rules="agreeRules"
+          :error-messages="formError('rules')"
           label="I agree with the rules"
           required
         ></v-checkbox>
@@ -86,12 +87,12 @@
 </template>
 
 <script>
-import CheckErrors from "../../mixins/check-errors.mixin";
-import Loading from "../../mixins/loading.mixin";
+import errors from "../../mixins/form-errors.mixin";
+import loading from "../../mixins/loading.mixin";
 
 export default {
   name: "register-form",
-  mixins: [CheckErrors, Loading],
+  mixins: [errors, loading],
   data() {
     return {
       show_password: false,
@@ -113,16 +114,13 @@ export default {
         v => !!v || "The password confirmation field is required.",
         v => v === this.form.password || "The passwords does not match."
       ],
-      agreeRules: [v => !!v || "You must agree to the rules!"],
-      messageSuccess: {
-        title: "Registered Successfully!",
-        message: "You can login here.",
-        type: "success"
-      }
+      agreeRules: [v => !!v || "You must agree to the rules!"]
     };
   },
   methods: {
     onRegister() {
+      this.$store.dispatch("clearError");
+
       if (this.$refs.form.validate()) {
         this.$store.dispatch("setLoading", true);
 
@@ -130,12 +128,13 @@ export default {
           .dispatch("auth/register", this.form)
           .then(response => {
             this.$store.dispatch("setLoading", false);
-            this.$store.dispatch("setMessage", this.messageSuccess);
+            this.$store.dispatch("setMessage", { code: "register_success" });
+
             this.$router.push({ name: "login" });
           })
           .catch(error => {
             this.$store.dispatch("setLoading", false);
-            this.serverErrors = error.response.data.errors;
+            this.$store.dispatch("setError", error);
           });
       }
     }

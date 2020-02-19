@@ -18,7 +18,7 @@ const routes = [
   {
     path: "/register",
     name: "register",
-    component: lazyLoad("components/auth/RegisterForm"),
+    component: lazyLoad("components/auth/Register"),
     meta: {
       layout: "auth",
       middleware: [authLocked]
@@ -27,7 +27,7 @@ const routes = [
   {
     path: "/login",
     name: "login",
-    component: lazyLoad("components/auth/LoginForm"),
+    component: lazyLoad("components/auth/Login"),
     meta: {
       layout: "auth",
       middleware: [authLocked]
@@ -36,7 +36,7 @@ const routes = [
   {
     path: "/security",
     name: "security",
-    component: lazyLoad("components/g2fa/VerifySecurityForm"),
+    component: lazyLoad("components/g2fa/VerifySecurity"),
     meta: {
       layout: "auth",
       middleware: [securityVerify]
@@ -63,7 +63,7 @@ const routes = [
       {
         path: "security",
         name: "profile-security",
-        component: lazyLoad("components/profile/Security"),
+        component: lazyLoad("components/g2fa/Security"),
         meta: {
           layout: "main",
           pageTitle: "Security"

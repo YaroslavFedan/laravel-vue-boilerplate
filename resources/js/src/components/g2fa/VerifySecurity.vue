@@ -18,7 +18,7 @@
           v-mask="mask"
           v-model="code"
           :rules="codeRules"
-          :error-messages="checkError('code')"
+          :error-messages="formError('code')"
           type="text"
           ref="input"
           required
@@ -36,15 +36,15 @@
 <script>
 import { mask } from "vue-the-mask";
 import googleIcon from "@/assets/image/google-icon";
-import CheckErrors from "@/mixins/check-errors.mixin";
-import Loading from "@/mixins/loading.mixin";
+import errors from "@/mixins/form-errors.mixin";
+import loading from "@/mixins/loading.mixin";
 
 export default {
   name: "verify-security-form",
   directives: {
     mask
   },
-  mixins: [CheckErrors, Loading],
+  mixins: [errors, loading],
   data: () => ({
     mask: "######",
     code: null,
@@ -61,6 +61,8 @@ export default {
   }),
   methods: {
     async submitHandler() {
+      this.$store.dispatch("clearError");
+
       if (this.$refs.form.validate()) {
         this.$store.dispatch("setLoading", true);
 
@@ -71,7 +73,7 @@ export default {
           this.$store.dispatch("auth/authorize");
           this.$router.push({ name: "home" });
         } catch (error) {
-          this.serverErrors = error.response.data.errors;
+          this.$store.dispatch("setError", error);
         }
 
         this.$store.dispatch("setLoading", false);

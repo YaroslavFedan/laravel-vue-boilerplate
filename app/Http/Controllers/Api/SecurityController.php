@@ -51,7 +51,7 @@ class SecurityController extends Controller
       return response()->json($this->_getData($user), 200);
     }
 
-    return response()->json($this->_getCodeError($user), 400);
+    return $this->validationError();
   }
 
   /**
@@ -62,6 +62,7 @@ class SecurityController extends Controller
    */
   public function toggle(Request $request)
   {
+
     $user = Auth::user();
 
     if ($this->_validate($request, $user)) {
@@ -71,7 +72,7 @@ class SecurityController extends Controller
       return response()->json($this->_getData($user), 200);
     }
 
-    return response()->json($this->_getCodeError($user), 400);
+    return $this->validationError();
   }
 
 
@@ -133,12 +134,15 @@ class SecurityController extends Controller
    *
    * @return void
    */
-  private function _getCodeError()
+  public function validationError()
   {
-    return [
+    $error = [
       "errors" => [
         "code" => "Invalid Verification Code, Please try again."
       ]
     ];
+
+    return response()->json($error, 422);
   }
+
 }

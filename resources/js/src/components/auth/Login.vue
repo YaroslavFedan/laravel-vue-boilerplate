@@ -11,6 +11,7 @@
           prepend-icon="email"
           type="email"
           v-model="form.username"
+          :error-messages="formError('username')"
           :rules="emailRules"
           required
         ></v-text-field>
@@ -21,6 +22,7 @@
           name="password"
           prepend-icon="lock"
           v-model="form.password"
+          :error-messages="formError('password')"
           :rules="passwordRules"
           :type="show_password ? 'text' : 'password'"
           @click:append="show_password = !show_password"
@@ -28,7 +30,6 @@
           autocomplete="on"
           required
         ></v-text-field>
-        <v-alert dense outlined type="error" v-if="serverError">{{serverError}}</v-alert>
 
         <v-card-actions justify-center>
           <v-spacer></v-spacer>
@@ -48,11 +49,12 @@
 </template>
 
 <script>
-import Loading from "@/mixins/loading.mixin";
+import errors from "../../mixins/form-errors.mixin";
+import loading from "@/mixins/loading.mixin";
 
 export default {
   name: "login-form",
-  mixins: [Loading],
+  mixins: [errors, loading],
   data() {
     return {
       show_password: false,
@@ -64,8 +66,7 @@ export default {
         v => !!v || "E-mail is required",
         v => /.+@.+\..+/.test(v) || "E-mail must be valid"
       ],
-      passwordRules: [v => !!v || "Password is required"],
-      serverError: ""
+      passwordRules: [v => !!v || "Password is required"]
     };
   },
   computed: {
@@ -75,6 +76,8 @@ export default {
   },
   methods: {
     async submitHandler() {
+      this.$store.dispatch("clearError");
+
       if (this.$refs.form.validate()) {
         this.$store.dispatch("setLoading", true);
 
@@ -95,8 +98,8 @@ export default {
             this.$router.push({ name: "security" });
           }
         } catch (error) {
+          this.$store.dispatch("setError", error);
           this.$store.dispatch("setLoading", false);
-          this.serverError = error.response.data;
         }
       }
     }

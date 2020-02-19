@@ -19,14 +19,18 @@
 </template>
 
 <script>
-import AvatarRandom from "@/plugins/avatar-random.plugin";
+import avatars from "@/utils/avatars";
 export default {
   computed: {
     info() {
       return this.$store.getters["user/info"] || false;
     },
     avatar() {
-      return AvatarRandom;
+      if (!this.info.avatar) {
+        const rand = Math.floor(Math.random() * avatars.length);
+        return avatars[rand];
+      }
+      return this.info.avatar;
     }
   }
 };

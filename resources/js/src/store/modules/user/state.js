@@ -1,3 +1,3 @@
-export default ()=>({
-  info : {}
-})
+export default () => ({
+  info: {}
+});

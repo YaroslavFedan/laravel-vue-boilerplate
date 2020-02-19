@@ -24,9 +24,16 @@ Route::namespace('Api')->group(function () {
     Route::post('security', "SecurityController@verify");
     Route::patch('security', "SecurityController@toggle");
 
-    Route::post('/logout', 'AuthController@logout');
-
     Route::get('info', "UserController@index");
 
+    Route::post('/logout', 'AuthController@logout');
   });
+
+  Route::any('{url?}/{sub_url?}', function () {
+    return response()->json([
+      'status'    => false,
+      'message'   => 'Page Not Found.',
+    ], 404);
+  });
+
 });

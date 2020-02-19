@@ -1,5 +1,5 @@
 export default {
-  register({ commit }, data) {
+  register({ dispatch }, data) {
     return new Promise((resolve, reject) => {
       axios
         .post("/register", data)
@@ -7,7 +7,7 @@ export default {
         .catch(error => reject(error));
     });
   },
-  login({ commit }, data) {
+  login({ commit, dispatch }, data) {
     return new Promise((resolve, reject) => {
       axios
         .post("/login", data)
@@ -87,4 +87,4 @@ export default {
         });
     });
   }
-}
+};

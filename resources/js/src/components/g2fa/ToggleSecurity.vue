@@ -1,16 +1,16 @@
 <template>
   <v-form id="security-form" ref="form" @submit.prevent="submitHandler" lazy-validation>
     <v-text-field
-        id="code"
-        label="Enter the 6-digit code in your Google Authenticator app"
-        name="code"
-        v-mask="mask"
-        v-model="code"
-        :rules="codeRules"
-        :error-messages="checkError('code')"
-        type="text"
-        required
-      ></v-text-field>
+      id="code"
+      label="Enter the 6-digit code in your Google Authenticator app"
+      name="code"
+      v-mask="mask"
+      v-model="code"
+      :rules="codeRules"
+      :error-messages="formError('code')"
+      type="text"
+      required
+    ></v-text-field>
     <v-flex xs12 mt-2 text-xs-right>
       <v-btn type="submit" :color="btnColor" :loading="loading">{{btnTitle}}</v-btn>
     </v-flex>
@@ -19,7 +19,7 @@
 
 <script>
 import { mask } from "vue-the-mask";
-import CheckErrors from "@/mixins/check-errors.mixin";
+import errors from "@/mixins/form-errors.mixin";
 
 export default {
   name: "toggle-security-form",
@@ -33,7 +33,7 @@ export default {
       default: "primary"
     }
   },
-  mixins: [CheckErrors],
+  mixins: [errors],
   directives: { mask },
   computed: {
     securityIsEnabled() {
@@ -52,44 +52,37 @@ export default {
         }
         return true;
       }
-    ],
-    messageEnabled: {
-      title: "Two-factor authentication",
-      message: "Successfully Enabled.",
-      type: "success"
-    },
-    messageDisabled: {
-      title: "Two-factor authentication",
-      message: "Successfully Disabled.",
-      type: "warn"
-    }
+    ]
   }),
   methods: {
     async submitHandler() {
+      this.$store.dispatch("clearError");
+
       if (this.$refs.form.validate()) {
         this.loading = true;
 
         try {
           await this.$store.dispatch("auth/toggleSecurity", this.code);
           this.showMessage();
+          this.code = null;
         } catch (error) {
-          this.serverErrors = error.response.data.errors;
+          this.$store.dispatch("setError", error);
         }
 
         this.loading = false;
-        this.code = null;
-        this.$refs.form.resetValidation();
       }
     },
     showMessage() {
       if (this.securityIsEnabled) {
-        this.$store.dispatch("setMessage", this.messageEnabled);
+        this.$store.dispatch("setMessage", { code: "security_enabled" });
       } else {
-        this.$store.dispatch("setMessage", this.messageDisabled);
+        this.$store.dispatch("setMessage", {
+          code: "security_disabled",
+          type: "warning"
+        });
       }
     }
-  },
-
+  }
 };
 </script>
 

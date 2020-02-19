@@ -35,8 +35,7 @@ export default {
         { text: "Currency", value: "ccy" },
         { text: "Buy", value: "buy" },
         { text: "Sale", value: "sale" }
-      ],
-
+      ]
     };
   },
   methods: {

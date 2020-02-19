@@ -7,5 +7,6 @@ export default {
         return item;
       })
       .filter(item => state.currencies.includes(item.ccy));
-  }
+  },
+  SET_EXCHANGE_ERROR: (state, status) => (state.error = status)
 };
