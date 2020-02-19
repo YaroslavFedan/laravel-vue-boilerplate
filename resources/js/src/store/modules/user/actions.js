@@ -1,5 +1,8 @@
 export default {
   fetchInfo({ commit }) {
+
+    commit("CLEAR_INFO");
+
     return new Promise((resolve, reject) => {
       axios
         .get("/info")

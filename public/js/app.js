@@ -2751,6 +2751,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     exchange: {
@@ -2760,6 +2776,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      search: "",
       header: [{
         text: "Currency",
         value: "ccy"
@@ -8022,17 +8039,16 @@ var render = function() {
         "v-skeleton-loader",
         {
           staticClass: "mx-auto",
-          attrs: {
-            type: "text, table-row-divider@4",
-            loading: !_vm.exchange.length
-          }
+          attrs: { type: "text, table-row-divider@4" }
         },
         [
           _c("v-data-table", {
             attrs: {
               headers: _vm.header,
+              search: _vm.search,
               items: _vm.exchange,
-              "hide-default-footer": ""
+              "hide-default-footer": "",
+              "no-data-text": "Service not responded. Try again later."
             },
             scopedSlots: _vm._u([
               {
@@ -8041,8 +8057,35 @@ var render = function() {
                   return [
                     _c(
                       "v-layout",
-                      { attrs: { row: "" } },
+                      { staticClass: "mt-3 mb-5", attrs: { row: "" } },
                       [
+                        _c(
+                          "v-flex",
+                          {
+                            staticClass: "pl-4",
+                            attrs: { "d-flex": "", "justify-start": "" }
+                          },
+                          [
+                            _c("v-text-field", {
+                              staticClass: "pt-0",
+                              attrs: {
+                                "append-icon": "search",
+                                label: "Search",
+                                "single-line": "",
+                                "hide-details": ""
+                              },
+                              model: {
+                                value: _vm.search,
+                                callback: function($$v) {
+                                  _vm.search = $$v
+                                },
+                                expression: "search"
+                              }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
                         _c(
                           "v-flex",
                           {
@@ -68898,7 +68941,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           switch (_context.prev = _context.next) {
             case 0:
               commit = _ref.commit;
-              commit("SET_EXCHANGE_DATA", []); //курс валют из приват-банка
+              commit("CLEAR_EXCHANGE_DATA"); //курс валют из приват-банка
 
               _context.next = 4;
               return fetch("https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5");
@@ -68971,6 +69014,9 @@ __webpack_require__.r(__webpack_exports__);
     }).filter(function (item) {
       return state.currencies.includes(item.ccy);
     });
+  },
+  CLEAR_EXCHANGE_DATA: function CLEAR_EXCHANGE_DATA(state) {
+    return state.exchange = [];
   },
   SET_EXCHANGE_ERROR: function SET_EXCHANGE_ERROR(state, status) {
     return state.error = status;
@@ -69059,6 +69105,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   fetchInfo: function fetchInfo(_ref) {
     var commit = _ref.commit;
+    commit("CLEAR_INFO");
     return new Promise(function (resolve, reject) {
       axios.get("/info").then(function (response) {
         commit("SET_INFO", response.data);
