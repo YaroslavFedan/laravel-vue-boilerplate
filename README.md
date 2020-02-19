@@ -7,7 +7,7 @@
  - vuex, vue-router, vuetify, toast
  - авторизацию, регистрацию (laravel passport)
  - включение, выключение, валидация - Google Two Factor Authentication
-
+ - небольшой конвертор валют
 
 ### Установка
 
