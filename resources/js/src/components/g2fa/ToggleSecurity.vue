@@ -35,12 +35,7 @@ export default {
   },
   mixins: [errors],
   directives: { mask },
-  computed: {
-    securityIsEnabled() {
-      return this.$store.getters["auth/securityIsEnabled"];
-    }
-  },
-  data: () => ({
+   data: () => ({
     loading: false,
     mask: "######",
     code: null,
@@ -54,6 +49,11 @@ export default {
       }
     ]
   }),
+  computed: {
+    securityIsEnabled() {
+      return this.$store.getters["auth/securityIsEnabled"];
+    }
+  },
   methods: {
     async submitHandler() {
       this.$store.dispatch("clearError");

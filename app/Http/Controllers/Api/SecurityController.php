@@ -21,7 +21,7 @@ class SecurityController extends Controller
   {
     $user = Auth::user();
 
-    if (!Auth::user()->passwordSecurity()->exists()) {
+    if (!optional(Auth::user()->passwordSecurity())) {
       $google2fa = app('pragmarx.google2fa');
 
       // Add the secret key to the registration data
@@ -144,5 +144,4 @@ class SecurityController extends Controller
 
     return response()->json($error, 422);
   }
-
 }

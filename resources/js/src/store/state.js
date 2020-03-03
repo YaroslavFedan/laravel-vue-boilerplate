@@ -5,5 +5,18 @@ export default () => ({
     message: null,
     type: "success"
   },
-  formErrors: {}
+  formErrors: {},
+  navbar: [
+    {
+      title: "Home",
+      icon: "mdi-home-city",
+      name: "home",
+      exact: true
+    },
+    {
+      title: "Profile",
+      icon: "mdi-account",
+      name: "edit-profile"
+    }
+  ]
 });

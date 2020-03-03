@@ -48,12 +48,12 @@ const routes = [
     component: lazyLoad("views/main/Home"),
     meta: {
       layout: "main",
-      pageTitle: "Home",
       middleware: [auth]
     }
   },
   {
-    path: "/profile",
+     path: "/profile",
+    // name: "profile",
     component: lazyLoad("views/main/Profile"),
     meta: {
       layout: "main",
@@ -61,12 +61,30 @@ const routes = [
     },
     children: [
       {
-        path: "security",
-        name: "profile-security",
-        component: lazyLoad("components/g2fa/Security"),
+        path: "/",
+        name: "edit-profile",
+        component: lazyLoad("components/profile/Profile"),
         meta: {
           layout: "main",
-          pageTitle: "Security"
+          middleware: [auth]
+        }
+      },
+      {
+        path: "security",
+        name: "profile-security",
+        component: lazyLoad("components/profile/Security"),
+        meta: {
+          layout: "main",
+          middleware: [auth]
+        }
+      },
+      {
+        path: "change-password",
+        name: "change-password",
+        component: lazyLoad("components/profile/ChangePassword"),
+        meta: {
+          layout: "main",
+          middleware: [auth]
         }
       }
     ]

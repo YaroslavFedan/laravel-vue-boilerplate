@@ -14,7 +14,7 @@
     <v-menu left bottom>
       <template v-slot:activator="{ on }">
         <v-btn icon v-on="on">
-          <v-icon>mdi-account-tie</v-icon>
+          <v-icon>mdi-dots-vertical</v-icon>
         </v-btn>
       </template>
 
@@ -34,12 +34,7 @@
 export default {
   data: () => ({
     date: new Date(),
-    interval: null,
-    picker: {
-      date: new Date().toISOString().substr(0, 10),
-      title: true,
-      locale: "ru"
-    }
+    interval: null
   }),
   methods: {
     toggle() {

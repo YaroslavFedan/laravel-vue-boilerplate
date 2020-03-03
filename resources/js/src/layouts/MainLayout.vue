@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <partials-navbar />
-    <partials-sidebar :items="menuItems" />
+    <partials-sidebar />
     <v-content app>
       <v-container>
         <v-responsive class="mx-auto overflow-visible">
@@ -23,27 +23,10 @@
   </v-container>
 </template>
 <script>
-import Loading from "@/mixins/loading.mixin";
-
 export default {
-  mixins: [Loading],
-  data() {
-    return {
-      isMini: false,
-      initData: {},
-      menuItems: [
-        {
-          title: "Home",
-          icon: "mdi-home-city",
-          name: "home",
-          exact: true
-        }
-      ]
-    };
-  },
   mounted() {
-    if (!Object.keys(this.$store.getters["user/info"]).length) {
-      this.$store.dispatch("user/fetchInfo");
+    if (!Object.keys(this.$store.getters["user/profile"]).length) {
+      this.$store.dispatch("user/fetchProfile");
     }
   }
 };

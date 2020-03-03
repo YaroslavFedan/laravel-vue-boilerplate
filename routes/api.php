@@ -24,10 +24,16 @@ Route::namespace('Api')->group(function () {
     Route::post('security', "SecurityController@verify");
     Route::patch('security', "SecurityController@toggle");
 
-    Route::get('info', "UserController@index");
+    // get, update user profile
+    Route::get('profile', "UserController@index");
+    Route::patch('profile', "UserController@update")->middleware('throttle:5,10');
+
+    // change user password
+    Route::patch('changePassword', "UserController@changePassword")->middleware('throttle:5,10');
 
     Route::post('/logout', 'AuthController@logout');
   });
+
 
   Route::any('{url?}/{sub_url?}', function () {
     return response()->json([
@@ -35,5 +41,4 @@ Route::namespace('Api')->group(function () {
       'message'   => 'Page Not Found.',
     ], 404);
   });
-
 });

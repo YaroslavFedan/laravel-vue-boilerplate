@@ -1,5 +1,6 @@
 import toast from "@/utils/toast.util";
 import messages from "@/utils/messages";
+import router from "@/router";
 
 export default {
   setMessage({ commit }, payload) {
@@ -22,6 +23,13 @@ export default {
         //error form validation
         commit("FORM_ERRORS", data.errors);
         break;
+      case 401:
+        // Unauthorized
+        dispatch("setLoading", false);
+        dispatch("clearData");
+        dispatch("setMessage", { type: "error", code: status, timeOut: 10000 });
+        router.push({ name: "login" }).catch(err => {});
+        break;
       default:
         dispatch("setMessage", { type: "error", code: status, timeOut: 10000 });
     }
@@ -32,6 +40,6 @@ export default {
   clearData(context) {
     // очищение всех данных после выхода из системы
     context.commit("auth/REMOVE_SECURITY_DATA");
-    context.commit("user/CLEAR_INFO");
+    context.commit("user/CLEAR_PROFILE");
   }
 };

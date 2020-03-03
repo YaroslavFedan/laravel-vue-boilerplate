@@ -25,7 +25,7 @@ class User extends Authenticatable
    * @var array
    */
   protected $hidden = [
-    'password', 'remember_token', 'email_verified_at'
+    'password', 'remember_token', 'email_verified_at', 'created_at', 'updated_at', 'id'
   ];
 
   /**
@@ -38,13 +38,14 @@ class User extends Authenticatable
   ];
 
 
-
   public function passwordSecurity()
   {
     return $this->hasOne('App\PasswordSecurity');
   }
 
 
-
-
+  public function profile()
+  {
+    return $this->hasOne('App\Profile');
+  }
 }

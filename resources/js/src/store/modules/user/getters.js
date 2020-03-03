@@ -1,3 +1,6 @@
+import { getField } from "vuex-map-fields";
+
 export default {
-  info: state => state.info
+  profile: state => state.profile,
+  getProfileField: state => getField(state.profile)
 };

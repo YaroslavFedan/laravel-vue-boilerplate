@@ -85,7 +85,8 @@ export default {
       // производим обмен
       return (this.amount * sale.buy) / buy.sale;
     }
-  }
+  },
+  methods: {}
 };
 </script>
 
