@@ -3642,19 +3642,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    currentAvatar: {
-      type: String
-    }
-  },
   data: function data() {
     return {
       items: _utils_avatars__WEBPACK_IMPORTED_MODULE_0__["default"],
-      currentAvatarIndex: null,
+      currentAvatarIndex: 0,
       idx: null
     };
   },
   computed: {
+    currentAvatar: function currentAvatar() {
+      return this.$store.getters['user/avatar'];
+    },
     selected: {
       get: function get() {
         var _this = this;
@@ -9843,11 +9841,7 @@ var render = function() {
   return _c(
     "v-container",
     { staticClass: "my-4", attrs: { "border-top": "" } },
-    [
-      !_vm.editAvatar
-        ? _c("profile-edit-profile", { attrs: { form: _vm.test } })
-        : _c("profile-edit-avatar")
-    ],
+    [!_vm.editAvatar ? _c("profile-edit-profile") : _c("profile-edit-avatar")],
     1
   )
 }
@@ -70822,6 +70816,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   profile: function profile(state) {
     return state.profile;
+  },
+  avatar: function avatar(state) {
+    return state.profile.avatar || null;
   },
   getProfileField: function getProfileField(state) {
     return Object(vuex_map_fields__WEBPACK_IMPORTED_MODULE_0__["getField"])(state.profile);

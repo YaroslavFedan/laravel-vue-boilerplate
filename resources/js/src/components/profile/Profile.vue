@@ -1,6 +1,6 @@
 <template>
   <v-container border-top class="my-4">
-    <profile-edit-profile :form="test" v-if="!editAvatar"></profile-edit-profile>
+    <profile-edit-profile v-if="!editAvatar"></profile-edit-profile>
     <profile-edit-avatar v-else></profile-edit-avatar>
   </v-container>
 </template>

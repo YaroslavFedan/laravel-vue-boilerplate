@@ -27,19 +27,17 @@
 <script>
 import avatars from "@/utils/avatars";
 export default {
-  props: {
-    currentAvatar: {
-      type: String
-    }
-  },
   data() {
     return {
       items: avatars,
-      currentAvatarIndex: null,
+      currentAvatarIndex: 0,
       idx: null
     };
   },
   computed: {
+    currentAvatar(){
+      return this.$store.getters['user/avatar'];
+    },
     selected: {
       get() {
         if (this.currentAvatar && this.idx === null) {
