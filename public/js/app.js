@@ -70856,7 +70856,8 @@ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) r
         email = payload.email,
         data = _objectWithoutProperties(payload, ["name", "email"]);
 
-    if (!data.profile.avatar) {
+    if (!data.profile || !data.profile.avatar) {
+      data.profile = {};
       var rand = Math.floor(Math.random() * _utils_avatars__WEBPACK_IMPORTED_MODULE_0__["default"].length);
       data.profile.avatar = _utils_avatars__WEBPACK_IMPORTED_MODULE_0__["default"][rand];
     }

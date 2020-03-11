@@ -5,7 +5,8 @@ export default {
   SET_PROFILE: (state, payload) => {
     let { name, email, ...data } = payload;
 
-    if (!data.profile.avatar) {
+    if (!data.profile || !data.profile.avatar) {
+      data.profile = {};
       let rand = Math.floor(Math.random() * avatars.length);
       data.profile.avatar = avatars[rand];
     }
